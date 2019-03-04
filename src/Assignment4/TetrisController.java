@@ -20,6 +20,7 @@ public class TetrisController {
                     incrementEverySec = 0;
                     resetIncrement = false;
                 }
+                moveRight();
                 createBlock(checkMovement);
             }
         }, 1000*1,1000*1);

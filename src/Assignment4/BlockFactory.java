@@ -1,16 +1,20 @@
 package Assignment4;
 
+import java.util.ArrayList;
+
 public class BlockFactory {
     private int yAxisPos;
     private int xAxisPos;
+    private ArrayList<Integer> previousMove = new ArrayList<>();
 
 
     public TetrisBlock getBlock(String blockType, String subBlockType, int yAxis, int xAxis, int movement){
+        previousMove.add(movement);
         if(blockType == null){
             return null;
         }
         if(blockType.equalsIgnoreCase("I-BLOCK")){
-            BlockI current = new BlockI(yAxis, xAxis, subBlockType, movement);setLocalValues(current.getYAxis(),current.getXAxis());
+            BlockI current = new BlockI(yAxis, xAxis, subBlockType, movement, previousMove);setLocalValues(current.getYAxis(),current.getXAxis());
             return current;
 
         } else if(blockType.equalsIgnoreCase("L-BLOCK")){

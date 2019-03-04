@@ -7,13 +7,15 @@ public class BlockI implements TetrisBlock {
     private ArrayList<Integer> xAxisMove = new ArrayList<>();
     private ArrayList<Integer> yAxisRemove= new ArrayList<>();
     private ArrayList<Integer> xAxisRemove= new ArrayList<>();
+    private ArrayList<Integer> previousMove = new ArrayList<>();
     private int yAxisPos;
     private int xAxisPos;
     private boolean endPos = false;
     private String subBlockType;
 
-    public BlockI(int yAxis, int xAxis, String subBlockType, int movement) {
+    public BlockI(int yAxis, int xAxis, String subBlockType, int movement, ArrayList<Integer> previousMove) {
         int move = movement;
+        this.previousMove = previousMove;
         this.yAxisPos = yAxis;
         this.xAxisPos = xAxis;
         this.subBlockType = subBlockType;
@@ -65,8 +67,39 @@ public class BlockI implements TetrisBlock {
                 this.xAxisMove.add(xAxis+move);
 
                 //Remove section
-                this.yAxisRemove.add(yAxis - 1);
-                this.xAxisRemove.add(xAxis);
+                //No movement
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1).equals(previousMove.get(previousMove.size()-2))) {
+                    this.yAxisRemove.add(yAxis - 1);
+                    this.xAxisRemove.add(xAxis);
+                }
+                //Left movement
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) < previousMove.get(previousMove.size()-2)){
+                    this.yAxisRemove.add(yAxis - 1);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis + 1);
+                    this.yAxisRemove.add(yAxis + 2);
+
+
+                    this.xAxisRemove.add(xAxis + (move +1));
+                    this.xAxisRemove.add(xAxis + (move +1));
+                    this.xAxisRemove.add(xAxis + (move +1));
+                    this.xAxisRemove.add(xAxis + (move +1));
+
+                }
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) > previousMove.get(previousMove.size()-2)){
+                    System.out.println("hello");
+                    this.yAxisRemove.add(yAxis - 1);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis + 1);
+                    this.yAxisRemove.add(yAxis + 2);
+
+
+                    this.xAxisRemove.add(xAxis + (move -1));
+                    this.xAxisRemove.add(xAxis + (move -1));
+                    this.xAxisRemove.add(xAxis + (move -1));
+                    this.xAxisRemove.add(xAxis + (move -1));
+                }
+
 
             } else {
                 this.endPos = true;

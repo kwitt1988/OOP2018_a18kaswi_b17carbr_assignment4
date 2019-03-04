@@ -2,7 +2,7 @@ package Assignment4;
 
 import java.util.ArrayList;
 
-public class IBlock implements TetrisBlock {
+public class BlockI implements TetrisBlock {
     private ArrayList<Integer> yAxisMove = new ArrayList<>();
     private ArrayList<Integer> xAxisMove = new ArrayList<>();
     private ArrayList<Integer> yAxisRemove= new ArrayList<>();
@@ -12,7 +12,7 @@ public class IBlock implements TetrisBlock {
     private boolean endPos = false;
     private String subBlockType;
 
-    public IBlock(int yAxis, int xAxis, String subBlockType, int movement) {
+    public BlockI(int yAxis, int xAxis, String subBlockType, int movement) {
         int move = movement;
         this.yAxisPos = yAxis;
         this.xAxisPos = xAxis;
@@ -111,20 +111,5 @@ public class IBlock implements TetrisBlock {
     @Override
     public boolean getEndPos(){
         return endPos;
-    }
-
-    @Override
-    public void rotateBlock() {
-    }
-
-    @Override
-    public void moveBlockLeft() {
-
-
-    }
-
-    @Override
-    public void moveBlockRight() {
-
     }
 }

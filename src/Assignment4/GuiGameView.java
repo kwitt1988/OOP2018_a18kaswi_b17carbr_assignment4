@@ -4,17 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GuiGameView extends GuiView implements ActionListener{
-    private JFrame gameFrame = new JFrame();
-    private JPanel blockPanel = new JPanel();
+public class GuiGameView extends GuiView{
+    private JFrame mainFrame = new JFrame();
+    private JPanel mainPanel = new JPanel();
     private static final JPanel[][] blockPanelArray = new JPanel[19][8];
-    GameController runGame = new GameController();
+    TetrisController gameController = new TetrisController();
+
 
     GuiGameView(){
-        frameSettings(gameFrame, blockPanel, 800, 600);
+        frameSettings(mainFrame, mainPanel, 800, 600);
         setBlockPanel();
-        gameFrame.add(blockPanel);
-        runGame.gameLoop();
+        mainFrame.add(mainPanel);
+        gameController.gameLoop();
         while(true){
             compareArrays();
         }
@@ -25,10 +26,10 @@ public class GuiGameView extends GuiView implements ActionListener{
                 for(int column = 0; column < blockPanelArray[row].length; column++){
                     blockPanelArray[row][column] = new JPanel();
                     blockPanelArray[row][column].setBackground(Color.green);
-                    blockPanel.add(blockPanelArray[row][column]);
+                    mainPanel.add(blockPanelArray[row][column]);
                 }
         }
-        blockPanel.setFocusable(true);
+        mainPanel.setFocusable(true);
     }
 
     void compareArrays(){
@@ -52,7 +53,7 @@ public class GuiGameView extends GuiView implements ActionListener{
 
     @Override
     void listeners() {
-        blockPanel.addKeyListener(new KeyListener() {
+        mainPanel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -65,11 +66,11 @@ public class GuiGameView extends GuiView implements ActionListener{
 
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){
-                    runGame.moveLeft();
+                    gameController.moveLeft();
 
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
-                    runGame.moveRight();
+                    gameController.moveRight();
                 }
 
             }
@@ -81,7 +82,5 @@ public class GuiGameView extends GuiView implements ActionListener{
         });
 
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    }
+
 }

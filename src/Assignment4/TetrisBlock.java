@@ -11,7 +11,4 @@ public interface TetrisBlock {
     ArrayList<Integer> getXAxisRemove();
     ArrayList<Integer> getYAxisRemove();
     boolean getEndPos();
-    void rotateBlock();
-    void moveBlockLeft();
-    void moveBlockRight();
 }

@@ -2,29 +2,21 @@ package Assignment4;
 
 import java.util.ArrayList;
 
-public class IBlock implements TetrisBlock {
+public class BlockI implements TetrisBlock {
     private ArrayList<Integer> yAxisMove = new ArrayList<>();
     private ArrayList<Integer> xAxisMove = new ArrayList<>();
     private ArrayList<Integer> yAxisRemove= new ArrayList<>();
     private ArrayList<Integer> xAxisRemove= new ArrayList<>();
-    private ArrayList<Integer> previousMove = new ArrayList<>();
     private int yAxisPos;
     private int xAxisPos;
     private boolean endPos = false;
     private String subBlockType;
 
-
-    public IBlock(int yAxis, int xAxis, String subBlockType, int movement, ArrayList<Integer> previousMove) {
+    public BlockI(int yAxis, int xAxis, String subBlockType, int movement) {
         int move = movement;
-        this.previousMove = previousMove;
         this.yAxisPos = yAxis;
         this.xAxisPos = xAxis;
         this.subBlockType = subBlockType;
-        System.out.println(this.previousMove.size());
-
-
-
-
 
         // I-BLOCK HORIZONTAL
         if(subBlockType == "Ih") {
@@ -53,12 +45,10 @@ public class IBlock implements TetrisBlock {
                 this.xAxisRemove.add(xAxis + 3);
 
 
-
             } else {
                 this.endPos = true;
             }
         }
-
         // I-BLOCK VERTICAL
         if(subBlockType == "Iv") {
             if (TetrisBoard.tetrisBoard[yAxis + 3][xAxis] == " " ) {
@@ -75,39 +65,8 @@ public class IBlock implements TetrisBlock {
                 this.xAxisMove.add(xAxis+move);
 
                 //Remove section
-                //No movement
-                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1).equals(previousMove.get(previousMove.size()-2))) {
-                    this.yAxisRemove.add(yAxis - 1);
-                    this.xAxisRemove.add(xAxis);
-                }
-                //Left movement
-                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) < previousMove.get(previousMove.size()-2)){
-                    this.yAxisRemove.add(yAxis - 1);
-                    this.yAxisRemove.add(yAxis);
-                    this.yAxisRemove.add(yAxis + 1);
-                    this.yAxisRemove.add(yAxis + 2);
-
-
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
-
-                }
-                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) > previousMove.get(previousMove.size()-2)){
-                    System.out.println("hello");
-                    this.yAxisRemove.add(yAxis - 1);
-                    this.yAxisRemove.add(yAxis);
-                    this.yAxisRemove.add(yAxis + 1);
-                    this.yAxisRemove.add(yAxis + 2);
-
-
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
-                }
-
+                this.yAxisRemove.add(yAxis - 1);
+                this.xAxisRemove.add(xAxis);
 
             } else {
                 this.endPos = true;
@@ -152,20 +111,5 @@ public class IBlock implements TetrisBlock {
     @Override
     public boolean getEndPos(){
         return endPos;
-    }
-
-    @Override
-    public void rotateBlock() {
-    }
-
-    @Override
-    public void moveBlockLeft() {
-
-
-    }
-
-    @Override
-    public void moveBlockRight() {
-
     }
 }

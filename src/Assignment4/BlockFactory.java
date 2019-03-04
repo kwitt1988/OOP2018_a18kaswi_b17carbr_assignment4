@@ -13,8 +13,7 @@ public class BlockFactory {
             return null;
         }
         if(blockType.equalsIgnoreCase("I-BLOCK")){
-            IBlock current = new IBlock(yAxis, xAxis, subBlockType, movement);
-            setLocalValues(current.getYAxis(),current.getXAxis());
+            IBlock current = new IBlock(yAxis, xAxis, subBlockType, movement);setLocalValues(current.getYAxis(),current.getXAxis());
             return current;
 
         } else if(blockType.equalsIgnoreCase("L-BLOCK")){

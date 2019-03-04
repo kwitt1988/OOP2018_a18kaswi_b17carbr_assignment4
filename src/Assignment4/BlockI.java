@@ -30,22 +30,48 @@ public class BlockI implements TetrisBlock {
                 this.yAxisMove.add(yAxis + 1);
                 this.yAxisMove.add(yAxis + 1);
 
-                this.xAxisMove.add(xAxis);
-                this.xAxisMove.add(xAxis + 1);
-                this.xAxisMove.add(xAxis + 2);
-                this.xAxisMove.add(xAxis + 3);
+                this.xAxisMove.add(xAxis + move);
+                this.xAxisMove.add(xAxis + (move + 1));
+                this.xAxisMove.add(xAxis + (move + 2));
+                this.xAxisMove.add(xAxis + (move + 3));
 
                 //Remove section
-                this.yAxisRemove.add(yAxis);
-                this.yAxisRemove.add(yAxis);
-                this.yAxisRemove.add(yAxis);
-                this.yAxisRemove.add(yAxis);
+                //No movement
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1).equals(previousMove.get(previousMove.size()-2))) {
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
 
-                this.xAxisRemove.add(xAxis);
-                this.xAxisRemove.add(xAxis + 1);
-                this.xAxisRemove.add(xAxis + 2);
-                this.xAxisRemove.add(xAxis + 3);
+                    this.xAxisRemove.add(xAxis);
+                    this.xAxisRemove.add(xAxis + 1);
+                    this.xAxisRemove.add(xAxis + 2);
+                    this.xAxisRemove.add(xAxis + 3);
+                }
+                //Left movement
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) < previousMove.get(previousMove.size()-2)){
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
 
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 2));
+                    this.xAxisRemove.add(xAxis + (move + 3));
+                    this.xAxisRemove.add(xAxis + (move + 4));
+                }
+                //Right movement
+                if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) > previousMove.get(previousMove.size()-2)){
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+                    this.yAxisRemove.add(yAxis);
+
+                    this.xAxisRemove.add(xAxis + (move - 1));
+                    this.xAxisRemove.add(xAxis + move);
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 2));
+                }
 
             } else {
                 this.endPos = true;
@@ -80,12 +106,13 @@ public class BlockI implements TetrisBlock {
                     this.yAxisRemove.add(yAxis + 2);
 
 
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
-                    this.xAxisRemove.add(xAxis + (move +1));
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 1));
 
                 }
+                //Right movement
                 if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) > previousMove.get(previousMove.size()-2)){
                     System.out.println("hello");
                     this.yAxisRemove.add(yAxis - 1);
@@ -94,10 +121,10 @@ public class BlockI implements TetrisBlock {
                     this.yAxisRemove.add(yAxis + 2);
 
 
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
-                    this.xAxisRemove.add(xAxis + (move -1));
+                    this.xAxisRemove.add(xAxis + (move - 1));
+                    this.xAxisRemove.add(xAxis + (move - 1));
+                    this.xAxisRemove.add(xAxis + (move - 1));
+                    this.xAxisRemove.add(xAxis + (move - 1));
                 }
 
 

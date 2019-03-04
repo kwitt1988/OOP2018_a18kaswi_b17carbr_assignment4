@@ -37,10 +37,6 @@ class TetrisBoard {
         System.out.println();
     }
 
-    //  tetrisBoard.setTetrisBoard(block.getYAxisMove(), block.getXAxisMove(), block.getYAxisRemove(), block.getXAxisRemove(), block.getBlockSubType());
-    // ArrayList<Integer> styr vilka som skall målas ut och tas bort
-
-
     public void setTetrisBoard(ArrayList<Integer> yAxisMove, ArrayList<Integer> xAxisMove, ArrayList<Integer> yAxisRemove, ArrayList<Integer> xAxisRemove, String subBlockType){
         for(int i = 0; i < yAxisMove.size(); i++){
             tetrisBoard[yAxisMove.get(i)][xAxisMove.get(i)] = subBlockType;

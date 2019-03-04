@@ -2,8 +2,9 @@ package Assignment4;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class GuiGameView extends GuiView{
+public class GuiGameView extends GuiView implements ActionListener{
     private JFrame gameFrame = new JFrame();
     private JPanel blockPanel = new JPanel();
     private static final JPanel[][] blockPanelArray = new JPanel[19][8];
@@ -13,12 +14,7 @@ public class GuiGameView extends GuiView{
         frameSettings(gameFrame, blockPanel, 800, 600);
         setBlockPanel();
         gameFrame.add(blockPanel);
-
-        /// denna måste vara trådad 1000/60 fps
-        // likadan looop som i inl3
-
         runGame.gameLoop();
-        // KAN CALLA PÅ GAMELOOP.MOVERIGHT ETC
         while(true){
             compareArrays();
         }
@@ -32,6 +28,7 @@ public class GuiGameView extends GuiView{
                     blockPanel.add(blockPanelArray[row][column]);
                 }
         }
+        blockPanel.setFocusable(true);
     }
 
     void compareArrays(){
@@ -55,6 +52,36 @@ public class GuiGameView extends GuiView{
 
     @Override
     void listeners() {
+        blockPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
 
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int KeyCode = e.getKeyCode();
+                if(KeyCode == KeyEvent.VK_E){
+                    System.out.println("tja");
+
+                }
+                if(KeyCode == KeyEvent.VK_LEFT){
+                    runGame.moveLeft();
+
+                }
+                if(KeyCode == KeyEvent.VK_RIGHT){
+                    runGame.moveRight();
+                }
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
     }
 }

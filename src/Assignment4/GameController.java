@@ -21,7 +21,6 @@ public class GameController {
                     resetIncrement = false;
                 }
                 createBlock(checkMovement);
-                moveLeft();
             }
         }, 1000*1,1000*1);
     }

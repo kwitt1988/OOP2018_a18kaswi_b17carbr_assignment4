@@ -7,9 +7,6 @@ public class BlockFactory {
     private int xAxisPos;
     private ArrayList<Integer> previousMove = new ArrayList<>();
 
-    private void createRandomBlock(){
-
-    }
 
     public TetrisBlock getBlock(String blockType, String subBlockType, int yAxis, int xAxis, int movement, int rotateBlock){
         previousMove.add(movement);

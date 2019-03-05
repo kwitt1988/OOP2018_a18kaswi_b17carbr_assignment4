@@ -10,7 +10,6 @@ public class GuiGameView extends GuiView{
     private static final JPanel[][] blockPanelArray = new JPanel[19][8];
     TetrisController tetrisController = new TetrisController();
 
-
     GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
         setBlockPanel();
@@ -40,6 +39,10 @@ public class GuiGameView extends GuiView{
                 if(tetrisBoard[row][column].equals("Iv")){
                     blockPanelArray[row][column].setBackground(Color.blue);
                 }
+                else if(tetrisBoard[row][column].equals("Square")){
+                    blockPanelArray[row][column].setBackground(Color.ORANGE);
+                }
+
                 else{
                     blockPanelArray[row][column].setBackground(Color.green);
                 }
@@ -74,6 +77,8 @@ public class GuiGameView extends GuiView{
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
                     tetrisController.moveRight();
+                    mainFrame.revalidate();
+                    mainFrame.repaint();
                 }
 
             }

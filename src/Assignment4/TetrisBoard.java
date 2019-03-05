@@ -49,11 +49,16 @@ class TetrisBoard {
     }
 
     public void setTetrisBoardTest(BlockSquare block){
+        System.out.println(tetrisBoard.length);
+        System.out.println(block.getBlockPosition()[1].length);
+        System.out.println(block.getBlockPosition().length);
+        System.out.println(block.getBlockPosition()[0][1]);
+        System.out.println(tetrisBoard[0][1]);
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "Square") {
                     tetrisBoard[row][column] = block.getBlockPosition()[row][column];
-                }
+                } else tetrisBoard[row][column] = " ";
             }
         }
     }

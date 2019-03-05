@@ -35,18 +35,21 @@ public class TetrisController {
 
     public void moveRight(){
         movingShit += 1;
-        String[][] newPosition = new BlockSquare().moveRight(blockTest.getBlockPosition());
+
+        String[][] newPosition = blockTest.moveRight(blockTest.getBlockPosition());
         blockTest.setBlockPosition(newPosition);
+
     }
 
 
     public void createBlock(int movement){
         tetrisBoard.setTetrisBoardTest(blockTest);
+
     }
 
     private void updateTetrisBoard(TetrisBlock activeBlock){
         tetrisBoard.setTetrisBoard(activeBlock.getYAxisMove(), activeBlock.getXAxisMove(), activeBlock.getYAxisRemove(), activeBlock.getXAxisRemove(), activeBlock.getBlockSubType());
-        tetrisBoard.drawTetrisBoard();
+        //tetrisBoard.drawTetrisBoard();
         this.resetIncrement = activeBlock.getEndPos();
     }
 }

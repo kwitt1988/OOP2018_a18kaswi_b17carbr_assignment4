@@ -26,7 +26,7 @@ public class BlockSquare {
     private boolean checkValidRightMove(String[][] blockPosition){
         for (int row = 0; row < blockPosition.length; row++) {
             for (int column = 0; column < blockPosition[row].length; column++) {
-                if(blockPosition[row][column] == "Iv"){
+                if(blockPosition[row][column] == "Square"){
                     if (TetrisBoard.tetrisBoard[row][column + 1] != " "){
                         return false;
                     }
@@ -37,13 +37,13 @@ public class BlockSquare {
     }
 
     public String[][] moveRight(String[][] oldBlockPosition) {
-        String[][] newBlockPosition = new String[oldBlockPosition.length][oldBlockPosition[1].length +1];
-        System.out.println(newBlockPosition.length);
+        String[][] newBlockPosition = new String[19][8];
         for (int row = 0; row < oldBlockPosition.length; row++) {
-            for (int column = 0; column < oldBlockPosition[row].length; column++) {
+            for (int column = 0; column < oldBlockPosition[row].length - 1; column++) {
                 newBlockPosition[row][column + 1] = oldBlockPosition[row][column];
             }
         }
+        checkValidRightMove(newBlockPosition);
         return newBlockPosition;
     }
 }

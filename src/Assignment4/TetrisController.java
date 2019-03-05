@@ -9,6 +9,7 @@ public class TetrisController {
     private int incrementEverySec = 0;
     private boolean resetIncrement;
     private int movingShit = 0;
+    private TetrisBlock currentBlock;
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -20,7 +21,6 @@ public class TetrisController {
                     incrementEverySec = 0;
                     resetIncrement = false;
                 }
-                moveRight();
                 createBlock(checkMovement);
             }
         }, 1000*1,1000*1);
@@ -34,10 +34,13 @@ public class TetrisController {
         movingShit += 1;
     }
 
+
+
     public void createBlock(int movement){
         int move = movement;
         TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 3, move);
-        updateTetrisBoard(block);
+        currentBlock = block;
+        updateTetrisBoard(currentBlock);
     }
 
     private void updateTetrisBoard(TetrisBlock activeBlock){

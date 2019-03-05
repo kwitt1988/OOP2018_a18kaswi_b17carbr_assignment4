@@ -79,7 +79,7 @@ public class BlockI implements TetrisBlock {
         }
         // I-BLOCK VERTICAL
         if(subBlockType == "Iv") {
-            if (TetrisBoard.tetrisBoard[yAxis + 3][xAxis] == " " ) {
+            if (TetrisBoard.tetrisBoard[yAxis + 3][xAxis+move] == " " ) {
                 // Move section
                 this.yAxisMove.add(yAxis);
                 this.yAxisMove.add(yAxis + 1);
@@ -164,6 +164,7 @@ public class BlockI implements TetrisBlock {
     public ArrayList<Integer> getYAxisRemove() {
         return yAxisRemove;
     }
+
     public String getBlockSubType(){
         return subBlockType;
     }

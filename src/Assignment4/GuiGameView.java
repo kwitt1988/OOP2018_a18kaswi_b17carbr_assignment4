@@ -8,14 +8,14 @@ public class GuiGameView extends GuiView{
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
     private static final JPanel[][] blockPanelArray = new JPanel[19][8];
-    TetrisController gameController = new TetrisController();
+    TetrisController tetrisController = new TetrisController();
 
 
     GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
         setBlockPanel();
         mainFrame.add(mainPanel);
-        gameController.gameLoop();
+        tetrisController.gameLoop();
         while(true){
             compareArrays();
         }
@@ -29,6 +29,7 @@ public class GuiGameView extends GuiView{
                     mainPanel.add(blockPanelArray[row][column]);
                 }
         }
+        mainPanel.setLayout(new GridLayout(19, 8));
         mainPanel.setFocusable(true);
     }
 
@@ -66,11 +67,11 @@ public class GuiGameView extends GuiView{
 
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){
-                    gameController.moveLeft();
+                    tetrisController.moveLeft();
 
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
-                    gameController.moveRight();
+                    tetrisController.moveRight();
                 }
 
             }

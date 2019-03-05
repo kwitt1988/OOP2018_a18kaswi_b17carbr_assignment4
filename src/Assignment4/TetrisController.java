@@ -1,5 +1,6 @@
 package Assignment4;
 
+import jdk.nashorn.internal.ir.Block;
 
 import java.util.TimerTask;
 
@@ -10,6 +11,8 @@ public class TetrisController {
     private boolean resetIncrement;
     private int movingShit = 0;
     private TetrisBlock currentBlock;
+    private BlockSquare blockTest = new BlockSquare();
+
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -32,15 +35,13 @@ public class TetrisController {
 
     public void moveRight(){
         movingShit += 1;
+        String[][] newPosition = new BlockSquare().moveRight(blockTest.getBlockPosition());
+        blockTest.setBlockPosition(newPosition);
     }
 
 
-
     public void createBlock(int movement){
-        int move = movement;
-        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 3, move);
-        currentBlock = block;
-        updateTetrisBoard(currentBlock);
+        tetrisBoard.setTetrisBoardTest(blockTest);
     }
 
     private void updateTetrisBoard(TetrisBlock activeBlock){

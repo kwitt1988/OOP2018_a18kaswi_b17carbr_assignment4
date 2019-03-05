@@ -43,10 +43,10 @@ public class BlockI implements TetrisBlock {
                     this.yAxisRemove.add(yAxis);
                     this.yAxisRemove.add(yAxis);
 
-                    this.xAxisRemove.add(xAxis);
-                    this.xAxisRemove.add(xAxis + 1);
-                    this.xAxisRemove.add(xAxis + 2);
-                    this.xAxisRemove.add(xAxis + 3);
+                    this.xAxisRemove.add(xAxis + move);
+                    this.xAxisRemove.add(xAxis + (move + 1));
+                    this.xAxisRemove.add(xAxis + (move + 2));
+                    this.xAxisRemove.add(xAxis + (move + 3));
                 }
                 //Left movement
                 if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) < previousMove.get(previousMove.size()-2)){
@@ -79,7 +79,7 @@ public class BlockI implements TetrisBlock {
         }
         // I-BLOCK VERTICAL
         if(subBlockType == "Iv") {
-            if (TetrisBoard.tetrisBoard[yAxis + 3][xAxis] == " " ) {
+            if (TetrisBoard.tetrisBoard[yAxis + 3][xAxis + move] == " " ) {
                 // Move section
                 this.yAxisMove.add(yAxis);
                 this.yAxisMove.add(yAxis + 1);
@@ -95,8 +95,8 @@ public class BlockI implements TetrisBlock {
                 //Remove section
                 //No movement
                 if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1).equals(previousMove.get(previousMove.size()-2))) {
-                    this.yAxisRemove.add(yAxis - 1);
-                    this.xAxisRemove.add(xAxis);
+                    this.yAxisRemove.add(yAxis - 1 );
+                    this.xAxisRemove.add(xAxis + move);
                 }
                 //Left movement
                 if(!(previousMove.size() <= 1) && previousMove.get(previousMove.size()-1) < previousMove.get(previousMove.size()-2)){

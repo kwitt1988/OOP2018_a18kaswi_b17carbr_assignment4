@@ -38,11 +38,11 @@ class TetrisBoard {
     }
 
     public void setTetrisBoard(ArrayList<Integer> yAxisMove, ArrayList<Integer> xAxisMove, ArrayList<Integer> yAxisRemove, ArrayList<Integer> xAxisRemove, String subBlockType){
-        for(int i = 0; i < yAxisMove.size(); i++){
-            tetrisBoard[yAxisMove.get(i)][xAxisMove.get(i)] = subBlockType;
-        }
         for(int i = 0; i < yAxisRemove.size(); i++){
             tetrisBoard[yAxisRemove.get(i)][xAxisRemove.get(i)] = " ";
+        }
+        for(int i = 0; i < yAxisMove.size(); i++){
+            tetrisBoard[yAxisMove.get(i)][xAxisMove.get(i)] = subBlockType;
         }
     }
 }

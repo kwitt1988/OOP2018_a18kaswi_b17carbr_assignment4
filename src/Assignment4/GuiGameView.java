@@ -55,6 +55,7 @@ public class GuiGameView extends GuiView{
     @Override
     void listeners() {
         mainPanel.addKeyListener(new KeyListener() {
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -64,6 +65,7 @@ public class GuiGameView extends GuiView{
                 int KeyCode = e.getKeyCode();
                 if(KeyCode == KeyEvent.VK_E){
                     System.out.println("tja");
+                    tetrisController.rotateBlock();
 
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){

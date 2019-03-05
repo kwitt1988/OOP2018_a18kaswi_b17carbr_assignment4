@@ -9,6 +9,7 @@ public class TetrisController {
     private int incrementEverySec = 0;
     private boolean resetIncrement;
     private int movingShit = 0;
+    private int rotateBlock;
     private TetrisBlock currentBlock;
 
     public void gameLoop(){
@@ -34,11 +35,17 @@ public class TetrisController {
         movingShit += 1;
     }
 
+    // Need to reset this to zero if a new block is added
+    public void rotateBlock(){
+        if(rotateBlock < 4) {
+            rotateBlock += 1;
+        }
+    }
 
 
     public void createBlock(int movement){
         int move = movement;
-        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 3, move);
+        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 3, move, rotateBlock);
         currentBlock = block;
         updateTetrisBoard(currentBlock);
     }

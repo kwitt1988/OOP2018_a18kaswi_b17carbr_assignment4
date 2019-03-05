@@ -11,13 +11,14 @@ public class BlockFactory {
 
     }
 
-    public TetrisBlock getBlock(String blockType, String subBlockType, int yAxis, int xAxis, int movement){
+    public TetrisBlock getBlock(String blockType, String subBlockType, int yAxis, int xAxis, int movement, int rotateBlock){
         previousMove.add(movement);
+
         if(blockType == null){
             return null;
         }
         if(blockType.equalsIgnoreCase("I-BLOCK")){
-            BlockI current = new BlockI(yAxis, xAxis, subBlockType, movement, previousMove);setLocalValues(current.getYAxis(),current.getXAxis());
+            BlockI current = new BlockI(yAxis, xAxis, subBlockType , movement, previousMove, rotateBlock);setLocalValues(current.getYAxis(),current.getXAxis());
             return current;
 
         } else if(blockType.equalsIgnoreCase("L-BLOCK")){

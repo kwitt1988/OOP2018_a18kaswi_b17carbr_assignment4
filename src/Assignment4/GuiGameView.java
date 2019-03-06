@@ -33,7 +33,7 @@ public class GuiGameView extends GuiView{
     }
 
     void compareArrays(){
-        String tetrisBoard[][] = TetrisBoard.getTetrisBoard();
+        String tetrisBoard[][] = TetrisBoard.tetrisBoard;
         for(int row = 0; row < tetrisBoard.length; row++){
             for(int column = 0; column < tetrisBoard[row].length; column++){
                 if(tetrisBoard[row][column].equals("Iv")){
@@ -41,6 +41,18 @@ public class GuiGameView extends GuiView{
                 }
                 else if(tetrisBoard[row][column].equals("Square")){
                     blockPanelArray[row][column].setBackground(Color.ORANGE);
+                }
+
+                else if(tetrisBoard[row][column].equals("-")){
+                    blockPanelArray[row][column].setBackground(Color.BLACK);
+                }
+
+                else if(tetrisBoard[row][column].equals(null)){
+                    blockPanelArray[row][column].setBackground(Color.PINK);
+                }
+
+                else if(tetrisBoard[row][column].equals("CurrentBlock")){
+                    blockPanelArray[row][column].setBackground(Color.RED);
                 }
 
                 else{

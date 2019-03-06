@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class TetrisBoard {
-    static final String tetrisBoard[][]={
+    public static String tetrisBoard[][]={
             /* 0 */   {" "," "," "," "," "," "," "," "},
             /* 1 */   {" "," "," "," "," "," "," "," "},
             /* 2 */   {" "," "," "," "," "," "," "," "},
@@ -23,11 +23,7 @@ class TetrisBoard {
             /* 15 */  {" "," "," "," "," "," "," "," "},
             /* 16 */  {" "," "," "," "," "," "," "," "},
             /* 17 */  {" "," "," "," "," "," "," "," "},
-            /* 18 */  {"E","E","E","E","E","E","E","E"}};
-
-    public static String[][] getTetrisBoard() {
-        return tetrisBoard;
-    }
+            /* 18 */  {"-","-","-","-","-","-","-","-"}};
 
     public void drawTetrisBoard() {
         for (int i=0;i<19;i++) {
@@ -35,6 +31,8 @@ class TetrisBoard {
         }
         System.out.println();
     }
+
+
 
     public void setTetrisBoard(ArrayList<Integer> yAxisMove, ArrayList<Integer> xAxisMove, ArrayList<Integer> yAxisRemove, ArrayList<Integer> xAxisRemove, String subBlockType){
 
@@ -48,12 +46,8 @@ class TetrisBoard {
         }
     }
 
-    public void setTetrisBoardTest(BlockSquare block){
-        System.out.println(tetrisBoard.length);
-        System.out.println(block.getBlockPosition()[1].length);
-        System.out.println(block.getBlockPosition().length);
-        System.out.println(block.getBlockPosition()[0][1]);
-        System.out.println(tetrisBoard[0][1]);
+
+    public void setTetrisBoardTest(BlockModel block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "Square") {

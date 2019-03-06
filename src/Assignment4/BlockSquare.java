@@ -1,50 +1,62 @@
 package Assignment4;
 
-public class BlockSquare {
-    String[][] squareBlock = new String[19][8];
+public class BlockSquare extends BlockModel {
+    String[][] blockPosition = new String[18][8];
     String blockType = "Square";
+    boolean lockBlock = false;
 
     BlockSquare() {
-        setSquareBlock();
+        blockPosition = TetrisBoard.tetrisBoard;
+        setBlockPosition(0);
+        moveDown();
     }
 
-    void setSquareBlock() {
-        squareBlock[0][1] = blockType;
-        squareBlock[1][1] = blockType;
-        squareBlock[2][1] = blockType;
-        squareBlock[1][2] = blockType;
-    }
-
-    public String[][] getBlockPosition(){
-        return squareBlock;
-    }
-
-    public void setBlockPosition(String[][] newBlockPosition){
-        squareBlock = newBlockPosition;
-    }
-
-    private boolean checkValidRightMove(String[][] blockPosition){
-        for (int row = 0; row < blockPosition.length; row++) {
+    public void moveDown(){
+        String[][] newBlockPosition = new String[18][8];
+        for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length; column++) {
-                if(blockPosition[row][column] == "Square"){
-                    if (TetrisBoard.tetrisBoard[row][column + 1] != " "){
-                        return false;
-                    }
+                if(blockPosition[row][column] == blockType){
+                    newBlockPosition[row + 1][column] = blockPosition[row][column];
                 }
             }
         }
-        return true;
+               
+
+        if(checkValidMoveDown(newBlockPosition)){
+            blockPosition = newBlockPosition;
+        } else if(checkValidMoveDown(newBlockPosition) == false){
+            lockBlock = true;
+        }
     }
 
-    public String[][] moveRight(String[][] oldBlockPosition) {
-        String[][] newBlockPosition = new String[19][8];
-        for (int row = 0; row < oldBlockPosition.length; row++) {
-            for (int column = 0; column < oldBlockPosition[row].length - 1; column++) {
-                newBlockPosition[row][column + 1] = oldBlockPosition[row][column];
-            }
+    void setBlockPosition(int angle) {
+        switch(angle){
+            case 0:
+                blockPosition[1][1] = blockType;
+                blockPosition[1][2] = blockType;
+                blockPosition[2][2] = blockType;
+                blockPosition[3][2] = blockType;
+                break;
+
+            case 90:
+                blockPosition[0][2] = blockType;
+                blockPosition[1][2] = blockType;
+                blockPosition[2][2] = blockType;
+                blockPosition[3][2] = blockType;
         }
-        checkValidRightMove(newBlockPosition);
-        return newBlockPosition;
+
+    }
+
+    public String[][] getBlockPosition(){
+        return blockPosition;
+    }
+
+    public void setBlockPosition(String[][] newBlockPosition){
+        blockPosition = newBlockPosition;
+    }
+
+    public void rotateBlock(){
+        setBlockPosition(90);
     }
 }
 

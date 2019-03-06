@@ -11,6 +11,7 @@ public class BlockI implements TetrisBlock {
     private int yAxisPos;
     private int xAxisPos;
     private int move;
+    private int rotateBlock;
     private boolean endPos = false;
     private String subBlockType;
     private String blockNumber;
@@ -19,23 +20,14 @@ public class BlockI implements TetrisBlock {
 
 
     public BlockI(int yAxis, int xAxis, String subBlockType, int movement, ArrayList<Integer> previousMove, int rotateBlock) {
-        System.out.println(rotateBlock);
-
-        if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Iv")){
-            this.subBlockType = "Ih";
-        }
-        else{
-            this.subBlockType = "Iv";
-        }
-
+        this.rotateBlock = rotateBlock;
         this.move = movement;
         this.previousMove = previousMove;
         this.yAxisPos = yAxis;
         this.xAxisPos = xAxis;
         this.blockNumber = Integer.toString((previousMove.size()-1));
         this.prevBlockNumber = Integer.toString((previousMove.size()-2));
-        System.out.println(move);
-
+        rotateBlock(subBlockType);
         createBlock();
 
 
@@ -121,7 +113,21 @@ public class BlockI implements TetrisBlock {
 
             }
 
-        public void rotateBlock(){
+        public void rotateBlock(String subBlockType){
+
+
+            if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Iv")){
+                this.subBlockType = "Ih";
+            }
+            else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Iv")){
+                this.subBlockType = "Iv";
+            }
+            else if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Ih")){
+                this.subBlockType = "Iv";
+            }
+            else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Ih")){
+                this. subBlockType = "Ih";
+            }
 
 
         }

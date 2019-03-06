@@ -45,12 +45,15 @@ public class TetrisController {
         if(rotateBlock < 4) {
             rotateBlock += 1;
         }
+        else{
+            rotateBlock = 0;
+        }
     }
 
 
     public void createBlock(int movement){
         int move = movement;
-        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 0, move, rotateBlock);
+        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Ih", incrementEverySec + 1, 0, move, rotateBlock);
         currentBlock = block;
         updateTetrisBoard(currentBlock);
     }

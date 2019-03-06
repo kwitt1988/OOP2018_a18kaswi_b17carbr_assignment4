@@ -29,6 +29,7 @@ public class TetrisController {
     }
 
     public void moveLeft(){
+        newBlock.moveLeft();
     }
 
     public void moveRight(){

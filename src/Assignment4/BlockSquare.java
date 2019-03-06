@@ -24,30 +24,46 @@ public class BlockSquare extends BlockModel {
                 }
             }
         }
-        if(checkValidMoveDown(newBlockPosition)){
+        if(checkValidMoveDown(blockPosition)){
             setBlockPosition(newBlockPosition);
         } else if(checkValidMoveDown(newBlockPosition) == false){
             lockBlock = true;
         }
     }
 
+    public void moveLeft() {
+        String[][] newBlockPosition = new String[18][8];
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length - 1; column++) {
+                if(row < 18 && blockPosition[row][column] == "Square" ){
+                    newBlockPosition[row][column -1] = blockPosition[row][column];
+                } else if(blockPosition[row][column] == "CurrentBlock"){
+                    newBlockPosition[row][column] = blockPosition[row][column];
+                }
+            }
+        }
+
+        if(checkValidMoveLeft(blockPosition)) {
+            setBlockPosition(newBlockPosition);
+        } else moveDown();
+    }
+
     public void moveRight() {
         String[][] newBlockPosition = new String[18][8];
         for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length - 1; column++) {
-                if(blockPosition[row][column] == blockType){
-                    if(row < 18){
+                    if(row < 18 && blockPosition[row][column] == "Square" ){
                         newBlockPosition[row][column + 1] = blockPosition[row][column];
+                    } else if(blockPosition[row][column] == "CurrentBlock"){
+                        newBlockPosition[row][column] = blockPosition[row][column];
                     }
-                }
             }
         }
-        if(checkValidMoveRight(newBlockPosition)) {
+
+        if(checkValidMoveRight(blockPosition)) {
             setBlockPosition(newBlockPosition);
-        }
+        } else moveDown();
     }
-
-
 
     void setBlockPosition(int angle) {
         switch(angle){

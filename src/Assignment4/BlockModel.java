@@ -1,6 +1,6 @@
 package Assignment4;
 
-public abstract class BlockModel implements TetrisBlockAlternative {
+public class BlockModel implements TetrisBlockAlternative {
     String[][] blockPosition;
     private String blockType;
 
@@ -18,19 +18,7 @@ public abstract class BlockModel implements TetrisBlockAlternative {
 
     }
 
-    @Override
-    public String[][] moveRight(String[][] blockPosition) {
-        String[][] newBlockPosition = new String[18][8];
-        for (int row = 0; row < blockPosition.length; row++) {
-            for (int column = 0; column < blockPosition[row].length - 1; column++) {
-                newBlockPosition[row][column + 1] = blockPosition[row][column];
-            }
-        }
-        if(checkValidMoveRight(newBlockPosition)){
-            return newBlockPosition;
-        } else return blockPosition;
 
-    }
 
     @Override
     public void moveDropDown() {
@@ -46,7 +34,7 @@ public abstract class BlockModel implements TetrisBlockAlternative {
 
     }
 
-    private boolean checkValidMoveRight(String[][] blockPosition){
+    public boolean checkValidMoveRight(String[][] blockPosition){
         for (int row = 0; row < blockPosition.length; row++) {
             for (int column = 0; column < blockPosition[row].length - 1; column++) {
                 if(blockPosition[row][column] == blockType){
@@ -58,11 +46,8 @@ public abstract class BlockModel implements TetrisBlockAlternative {
                 }
             }
         }
-        System.out.println("true");
         return false;
     }
-
-    // MÅSTE KOLLA INVERTERAT
 
     public boolean checkValidMoveDown(String[][] blockPosition){
         boolean validMove = true;
@@ -70,9 +55,9 @@ public abstract class BlockModel implements TetrisBlockAlternative {
             for(int column = 0; column < blockPosition[row].length; column++){
                 if(blockPosition[row][column] == "Square"){
                     if(row + 1 == 18){
-                        System.out.println("false");
                         validMove = false;
-                        return validMove;
+                    } else if(blockPosition[row +1][column] == "CurrentBlock"){
+                        validMove = false;
                     }
                 }
             }

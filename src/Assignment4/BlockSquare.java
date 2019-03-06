@@ -13,6 +13,14 @@ public class BlockSquare extends BlockModel {
         setBlockPosition(0);
     }
 
+    public void setLockBlock(boolean x){
+        lockBlock = x;
+    }
+
+    public boolean getLockBlock(){
+        return lockBlock;
+    }
+
     public void moveDown(){
         String[][] newBlockPosition = new String[18][8];
         for (int row = 0; row < blockPosition.length - 1; row++) {
@@ -27,7 +35,7 @@ public class BlockSquare extends BlockModel {
         if(checkValidMoveDown(blockPosition)){
             setBlockPosition(newBlockPosition);
         } else if(checkValidMoveDown(newBlockPosition) == false){
-            lockBlock = true;
+            setLockBlock(true);
         }
     }
 

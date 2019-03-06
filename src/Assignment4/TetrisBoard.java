@@ -37,7 +37,7 @@ class TetrisBoard {
         }
     }
 
-    public void setTetrisBoardTest(BlockModel block){
+    public void setTetrisBoardTest(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "Square") {

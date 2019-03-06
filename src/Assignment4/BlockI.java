@@ -46,7 +46,8 @@ public class BlockI implements TetrisBlock {
             System.out.println("Iv"+prevBlockNumber);
 
             if (TetrisBoard.tetrisBoard[yAxisPos][xAxisPos + changeMove] == " " && TetrisBoard.tetrisBoard[yAxisPos ][xAxisPos + (changeMove + 1)] == " " && TetrisBoard.tetrisBoard[yAxisPos][xAxisPos + (changeMove + 2)] == " "
-                    && TetrisBoard.tetrisBoard[yAxisPos ][xAxisPos + (changeMove + 3)] == " " || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove].equals("Iv"+prevBlockNumber))) {
+                    && TetrisBoard.tetrisBoard[yAxisPos ][xAxisPos + (changeMove + 3)] == " " || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove].equals("Iv"+prevBlockNumber)) ||  (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 1)].equals("Iv"+prevBlockNumber)) ||
+                    (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 2)].equals("Iv"+prevBlockNumber)) || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 3)].equals("Iv"+prevBlockNumber))) {
                 // Move section
                 this.yAxisMove.add(yAxisPos );
                 this.yAxisMove.add(yAxisPos );
@@ -54,7 +55,7 @@ public class BlockI implements TetrisBlock {
                 this.yAxisMove.add(yAxisPos );
 
                 if(move >= 4){
-                    this.xAxisMove.add(xAxisPos + changeMove);
+                    this.xAxisMove.add(xAxisPos + changeMove );
                     this.xAxisMove.add(xAxisPos + (changeMove + 1));
                     this.xAxisMove.add(xAxisPos + (changeMove + 2));
                     this.xAxisMove.add(xAxisPos + (changeMove + 3));
@@ -76,99 +77,107 @@ public class BlockI implements TetrisBlock {
             }
         }
         if (subBlockType == "Iv") {
+            int changeMove;
+            if(move >= 6){
+                changeMove = 6;
+            }
+            else {
+                changeMove = move;
+            }
 
-            if (TetrisBoard.tetrisBoard[yAxisPos + 2][xAxisPos + move] == " ") {
+            if (TetrisBoard.tetrisBoard[yAxisPos + 2][xAxisPos + changeMove + 1] == " ") {
                 // Move section
-                    this.yAxisMove.add(yAxisPos - 1);
-                    this.yAxisMove.add(yAxisPos);
-                    this.yAxisMove.add(yAxisPos + 1);
-                    this.yAxisMove.add(yAxisPos + 2);
-                System.out.println(yAxisPos + 3);
+                this.yAxisMove.add(yAxisPos - 1);
+                this.yAxisMove.add(yAxisPos);
+                this.yAxisMove.add(yAxisPos + 1);
+                this.yAxisMove.add(yAxisPos + 2);
 
-                    this.xAxisMove.add(xAxisPos + move);
-                    this.xAxisMove.add(xAxisPos + move);
-                    this.xAxisMove.add(xAxisPos + move);
-                    this.xAxisMove.add(xAxisPos + move);
 
-                    removeBlock();
+                this.xAxisMove.add(xAxisPos + changeMove +1);
+                this.xAxisMove.add(xAxisPos + changeMove +1);
+                this.xAxisMove.add(xAxisPos + changeMove +1);
+                this.xAxisMove.add(xAxisPos + changeMove +1);
+
+                removeBlock();
 
             }
             else {
                 this.endPos = true;
-        }
+            }
 
 
         }
 
     }
-        public void removeBlock() {
-                for(int i=0; i< TetrisBoard.tetrisBoard.length; i++) {
-                    for(int j=0; j<TetrisBoard.tetrisBoard[i].length; j++) {
-                        if(TetrisBoard.tetrisBoard[i][j].equals("Iv"+prevBlockNumber) || TetrisBoard.tetrisBoard[i][j].equals("Ih"+prevBlockNumber) ){
-                            this.xAxisRemove.add(j);
-                            this.yAxisRemove.add(i);
-                       }
-                    }
-               }
-
+    public void removeBlock() {
+        for(int i=0; i< TetrisBoard.tetrisBoard.length; i++) {
+            for(int j=0; j<TetrisBoard.tetrisBoard[i].length; j++) {
+                if(TetrisBoard.tetrisBoard[i][j].equals("Iv"+prevBlockNumber) || TetrisBoard.tetrisBoard[i][j].equals("Ih"+prevBlockNumber) ){
+                    this.xAxisRemove.add(j);
+                    this.yAxisRemove.add(i);
+                }
             }
+        }
 
-        public void rotateBlock(String subBlockType){
+    }
 
-
-            if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Iv")){
-                this.subBlockType = "Ih";
-            }
-            else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Iv")){
-                this.subBlockType = "Iv";
-            }
-            else if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Ih")){
-                this.subBlockType = "Iv";
-            }
-            else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Ih")){
-                this. subBlockType = "Ih";
-            }
+    public void rotateBlock(String subBlockType){
 
 
+        if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Iv")){
+            this.subBlockType = "Ih";
+        }
+        else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Iv")){
+            this.subBlockType = "Iv";
+        }
+        else if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Ih")){
+            this.subBlockType = "Iv";
+        }
+        else if(rotateBlock != 1 && rotateBlock != 3 && subBlockType.equals("Ih")){
+            this. subBlockType = "Ih";
         }
 
 
-        @Override
-        public int getYAxis () {
-            return yAxisPos;
-        }
+    }
 
-        @Override
-        public int getXAxis () {
-            return xAxisPos;
-        }
 
-        @Override
-        public ArrayList<Integer> getXAxisMove () {
+    @Override
+    public int getYAxis () {
+        return yAxisPos;
+    }
+
+    @Override
+    public int getXAxis () {
+        return xAxisPos;
+    }
+
+    @Override
+    public ArrayList<Integer> getXAxisMove () {
 
         return xAxisMove;
-        }
-
-        @Override
-        public ArrayList<Integer> getYAxisMove () {
-            return yAxisMove;
-        }
-
-        @Override
-        public ArrayList<Integer> getXAxisRemove () {
-            return xAxisRemove;
-        }
-
-        @Override
-        public ArrayList<Integer> getYAxisRemove () {
-            return yAxisRemove;
-        }
-        public String getBlockSubType () {
-            return subBlockType + blockNumber;
-        }
-
-        @Override
-        public boolean getEndPos () {
-            return endPos;
-        }
     }
+
+    @Override
+    public ArrayList<Integer> getYAxisMove () {
+        return yAxisMove;
+    }
+
+    @Override
+    public ArrayList<Integer> getXAxisRemove () {
+        return xAxisRemove;
+    }
+
+    @Override
+    public ArrayList<Integer> getYAxisRemove () {
+        return yAxisRemove;
+    }
+    public String getBlockSubType () {
+        return subBlockType + blockNumber;
+    }
+
+    @Override
+    public boolean getEndPos () {
+        return endPos;
+    }
+}
+

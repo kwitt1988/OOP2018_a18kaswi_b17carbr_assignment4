@@ -19,6 +19,7 @@ public class TetrisController {
                 int checkMovement = movingShit;
                 incrementEverySec++;
                 if(resetIncrement){
+                    System.out.println("hellooooo");
                     incrementEverySec = 0;
                     resetIncrement = false;
                 }
@@ -28,11 +29,15 @@ public class TetrisController {
     }
 
     public void moveLeft(){
-        movingShit -= 1;
+        if(movingShit <= 8 && movingShit >= 1) {
+            movingShit -= 1;
+        }
     }
 
     public void moveRight(){
-        movingShit += 1;
+        if(movingShit <= 6 && movingShit >= 0) {
+            movingShit += 1;
+        }
     }
 
     // Need to reset this to zero if a new block is added
@@ -45,7 +50,7 @@ public class TetrisController {
 
     public void createBlock(int movement){
         int move = movement;
-        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 3, move, rotateBlock);
+        TetrisBlock block = blockFactory.getBlock("I-BLOCK", "Iv", incrementEverySec + 1, 0, move, rotateBlock);
         currentBlock = block;
         updateTetrisBoard(currentBlock);
     }

@@ -17,22 +17,25 @@ public class BlockI implements TetrisBlock {
     private String prevBlockNumber;
 
 
+
     public BlockI(int yAxis, int xAxis, String subBlockType, int movement, ArrayList<Integer> previousMove, int rotateBlock) {
         System.out.println(rotateBlock);
+
         if(rotateBlock != 0 && rotateBlock != 2 && subBlockType.equals("Iv")){
             this.subBlockType = "Ih";
         }
         else{
             this.subBlockType = "Iv";
         }
+
         this.move = movement;
         this.previousMove = previousMove;
         this.yAxisPos = yAxis;
         this.xAxisPos = xAxis;
-        //this.subBlockType = subBlockType;
         this.blockNumber = Integer.toString((previousMove.size()-1));
         this.prevBlockNumber = Integer.toString((previousMove.size()-2));
-        System.out.println(prevBlockNumber);
+        System.out.println(move);
+
         createBlock();
 
 
@@ -40,43 +43,65 @@ public class BlockI implements TetrisBlock {
 
     public void createBlock() {
         if (subBlockType == "Ih") {
-            if (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + 1] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + 2] == " "
-                    && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + 3] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + 4] == " ") {
+
+            int changeMove;
+            if(move >= 5){
+                changeMove = 4;
+            }
+            else {
+                changeMove = move;
+            }
+            System.out.println("Iv"+prevBlockNumber);
+
+            if (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 1)] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 2)] == " "
+                    && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 3)] == " " || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove ].equals("Iv"+prevBlockNumber))) {
                 // Move section
-                this.yAxisMove.add(yAxisPos + 1);
-                this.yAxisMove.add(yAxisPos + 1);
-                this.yAxisMove.add(yAxisPos + 1);
-                this.yAxisMove.add(yAxisPos + 1);
+                this.yAxisMove.add(yAxisPos );
+                this.yAxisMove.add(yAxisPos );
+                this.yAxisMove.add(yAxisPos );
+                this.yAxisMove.add(yAxisPos );
 
-                this.xAxisMove.add(xAxisPos + move);
-                this.xAxisMove.add(xAxisPos + (move + 1));
-                this.xAxisMove.add(xAxisPos + (move + 2));
-                this.xAxisMove.add(xAxisPos + (move + 3));
-
+                if(move >= 4){
+                    this.xAxisMove.add(xAxisPos + changeMove);
+                    this.xAxisMove.add(xAxisPos + (changeMove + 1));
+                    this.xAxisMove.add(xAxisPos + (changeMove + 2));
+                    this.xAxisMove.add(xAxisPos + (changeMove + 3));
+                }
+                else {
+                    this.xAxisMove.add(xAxisPos + move);
+                    this.xAxisMove.add(xAxisPos + (move + 1));
+                    this.xAxisMove.add(xAxisPos + (move + 2));
+                    this.xAxisMove.add(xAxisPos + (move + 3));
+                }
                 removeBlock();
 
+
+
+
             } else {
+                System.out.println("HÄR VAR SKITEN");
                 this.endPos = true;
 
             }
         }
         if (subBlockType == "Iv") {
-            if (TetrisBoard.tetrisBoard[yAxisPos + 3][xAxisPos + move] == " " ) {
+            if (TetrisBoard.tetrisBoard[yAxisPos + 3][xAxisPos + move] == " ") {
                 // Move section
-                removeBlock();
-                this.yAxisMove.add(yAxisPos);
-                this.yAxisMove.add(yAxisPos + 1);
-                this.yAxisMove.add(yAxisPos + 2);
-                this.yAxisMove.add(yAxisPos + 3);
+                    this.yAxisMove.add(yAxisPos);
+                    this.yAxisMove.add(yAxisPos + 1);
+                    this.yAxisMove.add(yAxisPos + 2);
+                    this.yAxisMove.add(yAxisPos + 3);
 
-                this.xAxisMove.add(xAxisPos + move);
-                this.xAxisMove.add(xAxisPos + move);
-                this.xAxisMove.add(xAxisPos + move);
-                this.xAxisMove.add(xAxisPos + move);
+                    this.xAxisMove.add(xAxisPos + move);
+                    this.xAxisMove.add(xAxisPos + move);
+                    this.xAxisMove.add(xAxisPos + move);
+                    this.xAxisMove.add(xAxisPos + move);
 
+                    removeBlock();
 
             }
             else {
+                System.out.println("CALLEED");
                 this.endPos = true;
         }
 
@@ -85,7 +110,6 @@ public class BlockI implements TetrisBlock {
 
     }
         public void removeBlock() {
-
                 for(int i=0; i< TetrisBoard.tetrisBoard.length; i++) {
                     for(int j=0; j<TetrisBoard.tetrisBoard[i].length; j++) {
                         if(TetrisBoard.tetrisBoard[i][j].equals("Iv"+prevBlockNumber) || TetrisBoard.tetrisBoard[i][j].equals("Ih"+prevBlockNumber) ){
@@ -96,6 +120,11 @@ public class BlockI implements TetrisBlock {
                }
 
             }
+
+        public void rotateBlock(){
+
+
+        }
 
 
         @Override
@@ -110,7 +139,8 @@ public class BlockI implements TetrisBlock {
 
         @Override
         public ArrayList<Integer> getXAxisMove () {
-            return xAxisMove;
+
+        return xAxisMove;
         }
 
         @Override

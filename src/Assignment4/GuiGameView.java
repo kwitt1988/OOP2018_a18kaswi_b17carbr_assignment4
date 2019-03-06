@@ -37,7 +37,7 @@ public class GuiGameView extends GuiView{
         String tetrisBoard[][] = TetrisBoard.getTetrisBoard();
         for(int row = 0; row < tetrisBoard.length; row++){
             for(int column = 0; column < tetrisBoard[row].length; column++){
-                if(tetrisBoard[row][column].equals("Iv")){
+                if(tetrisBoard[row][column].substring(0,1).equals("I")){
                     blockPanelArray[row][column].setBackground(Color.blue);
                 }
                 else{

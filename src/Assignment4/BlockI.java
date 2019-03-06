@@ -45,8 +45,8 @@ public class BlockI implements TetrisBlock {
             }
             System.out.println("Iv"+prevBlockNumber);
 
-            if (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 1)] == " " && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 2)] == " "
-                    && TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + (changeMove + 3)] == " " || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove ].equals("Iv"+prevBlockNumber))) {
+            if (TetrisBoard.tetrisBoard[yAxisPos][xAxisPos + changeMove] == " " && TetrisBoard.tetrisBoard[yAxisPos ][xAxisPos + (changeMove + 1)] == " " && TetrisBoard.tetrisBoard[yAxisPos][xAxisPos + (changeMove + 2)] == " "
+                    && TetrisBoard.tetrisBoard[yAxisPos ][xAxisPos + (changeMove + 3)] == " " || (TetrisBoard.tetrisBoard[yAxisPos + 1][xAxisPos + changeMove].equals("Iv"+prevBlockNumber))) {
                 // Move section
                 this.yAxisMove.add(yAxisPos );
                 this.yAxisMove.add(yAxisPos );

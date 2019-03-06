@@ -19,7 +19,6 @@ public class TetrisController {
                 int checkMovement = movingShit;
                 incrementEverySec++;
                 if(resetIncrement){
-                    System.out.println("hellooooo");
                     incrementEverySec = 0;
                     resetIncrement = false;
                 }

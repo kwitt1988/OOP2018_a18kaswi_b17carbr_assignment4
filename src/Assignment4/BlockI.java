@@ -71,18 +71,19 @@ public class BlockI implements TetrisBlock {
 
 
             } else {
-                System.out.println("HÄR VAR SKITEN");
                 this.endPos = true;
 
             }
         }
         if (subBlockType == "Iv") {
-            if (TetrisBoard.tetrisBoard[yAxisPos + 3][xAxisPos + move] == " ") {
+
+            if (TetrisBoard.tetrisBoard[yAxisPos + 2][xAxisPos + move] == " ") {
                 // Move section
+                    this.yAxisMove.add(yAxisPos - 1);
                     this.yAxisMove.add(yAxisPos);
                     this.yAxisMove.add(yAxisPos + 1);
                     this.yAxisMove.add(yAxisPos + 2);
-                    this.yAxisMove.add(yAxisPos + 3);
+                System.out.println(yAxisPos + 3);
 
                     this.xAxisMove.add(xAxisPos + move);
                     this.xAxisMove.add(xAxisPos + move);
@@ -93,7 +94,6 @@ public class BlockI implements TetrisBlock {
 
             }
             else {
-                System.out.println("CALLEED");
                 this.endPos = true;
         }
 

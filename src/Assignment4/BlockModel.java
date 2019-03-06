@@ -1,12 +1,41 @@
 package Assignment4;
 
-public class BlockModel implements TetrisBlockAlternative {
+public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
     private String blockType;
 
     BlockModel(){
     }
 
+    @Override
+    public boolean getLockBlock() {
+        return false;
+    }
+
+    @Override
+    public void setLockBlock() {
+
+    }
+
+    @Override
+    public void lockBlock() {
+
+    }
+
+    @Override
+    public void moveDown() {
+
+    }
+
+    @Override
+    public void moveLeft() {
+
+    }
+
+    @Override
+    public void moveRight() {
+
+    }
 
     @Override
     public String[][] getBlockPosition() {

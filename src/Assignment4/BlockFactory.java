@@ -1,18 +1,20 @@
 package Assignment4;
 
-import java.util.ArrayList;
-
 public class BlockFactory {
-    private int yAxisPos;
-    private int xAxisPos;
-    private ArrayList<Integer> previousMove = new ArrayList<>();
 
-    public TetrisBlock getBlock(String blockType, String subBlockType, int yAxis, int xAxis, int movement){
-        return null;
+    public TetrisBlock getBlock(TetrisBoard board){
+        return createRandomBlock(board);
     }
 
-    public void setLocalValues(int yAxisPos, int xAxisPos){
-        this.yAxisPos = yAxisPos;
-        this.xAxisPos = xAxisPos;
+    private TetrisBlock createRandomBlock(TetrisBoard board){
+        TetrisBlock newBlock = new BlockModel();
+        int random = (int)(Math.random() * 2) + 1;
+        switch (random){
+            case 1: newBlock = new BlockSquare(board);
+                    break;
+            case 2: newBlock = new BlockSquare(board);
+                    break;
+        }
+        return newBlock;
     }
 }

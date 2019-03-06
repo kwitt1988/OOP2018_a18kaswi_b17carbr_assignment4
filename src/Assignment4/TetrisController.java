@@ -1,13 +1,11 @@
 package Assignment4;
 
-import java.util.Arrays;
 import java.util.TimerTask;
 
 public class TetrisController {
     private TetrisBoard tetrisBoard = new TetrisBoard();
     private BlockFactory blockFactory = new BlockFactory();
-    BlockSquare newBlock = new BlockSquare(tetrisBoard);
-
+    TetrisBlock newBlock = new BlockSquare(tetrisBoard);
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -15,9 +13,9 @@ public class TetrisController {
             public void run() {
                 newBlock.moveDown();
                 tetrisBoard.setTetrisBoardTest(newBlock);
-                if(newBlock.lockBlock == true){
+                if(newBlock.getLockBlock()){
                     tetrisBoard.setTetrisBoard(lockBlock());
-                    newBlock = new BlockSquare(tetrisBoard);
+                    newBlock = blockFactory.getBlock(tetrisBoard);
                 }
             }
 

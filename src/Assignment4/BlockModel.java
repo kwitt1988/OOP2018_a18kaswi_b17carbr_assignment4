@@ -94,26 +94,75 @@ public class BlockModel implements TetrisBlock {
 
     }
 
-    @Override
-    public void rotateBlock() {
 
+    public void rotateBlock(){
+        rotateBlock1();
+        rotateBlock2();
+        rotateBlock3();
+        rotateBlock4();
+    }
+
+    public void rotateBlock1() {
         for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length; column++) {
-                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
-                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
-
-
+                if(blockPosition[row][column] == currentPiece1){
                     String currentPiece = blockPosition[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-
                     blockPosition[newRow][newColumn] = blockPosition[row][column];
                     blockPosition[row][column] = " ";
-                    
+                    break;
                 }
             }
         }
     }
+
+    public void rotateBlock2() {
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
+                if(blockPosition[row][column] == currentPiece2){
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
+                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    blockPosition[row][column] = " ";
+                    break;
+                }
+            }
+        }
+    }
+
+    public void rotateBlock3() {
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
+                if(blockPosition[row][column] == currentPiece3){
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
+                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    blockPosition[row][column] = " ";
+                    break;
+                }
+            }
+        }
+    }
+
+    public void rotateBlock4() {
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
+                if(blockPosition[row][column] == currentPiece4){
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
+                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    blockPosition[row][column] = " ";
+                    break;
+                }
+            }
+        }
+    }
+
+
 
     public int rotateRow(int currentRow, String currentPiece){
         return 0;
@@ -177,5 +226,4 @@ public class BlockModel implements TetrisBlock {
         }
         return validMove;
     }
-
 }

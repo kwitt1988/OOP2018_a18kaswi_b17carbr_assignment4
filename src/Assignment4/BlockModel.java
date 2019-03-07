@@ -2,6 +2,7 @@ package Assignment4;
 
 public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
+    int angle;
     boolean lockBlock = false;
     public String currentPiece1 = "currentPiece1";
     public String currentPiece2 = "currentPiece2";
@@ -96,6 +97,30 @@ public class BlockModel implements TetrisBlock {
     @Override
     public void rotateBlock() {
 
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
+                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
+
+
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
+
+                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    blockPosition[row][column] = " ";
+                    
+                }
+            }
+        }
+    }
+
+    public int rotateRow(int currentRow, String currentPiece){
+        return 0;
+    }
+
+    public int rotateColumn(int currentColumn, String currentPiece){
+        return 0;
     }
 
     private boolean checkValidMoveLeft(String[][] blockPosition) {

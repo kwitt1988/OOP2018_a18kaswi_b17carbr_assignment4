@@ -40,6 +40,9 @@ public class GuiGameView extends GuiView{
                 if(KeyCode == KeyEvent.VK_RIGHT){
                     tetrisController.moveRight();
                 }
+                if(KeyCode == KeyEvent.VK_UP) {
+                    tetrisController.rotateBlock();
+                }
             }
 
             @Override
@@ -81,7 +84,7 @@ public class GuiGameView extends GuiView{
                     blockPanelArray[row][column].setBackground(Color.BLACK);
                 }
 
-                else if(tetrisBoard[row][column].equals("asdf")){
+                else if(tetrisBoard[row][column].equals("Square")){
                     blockPanelArray[row][column].setBackground(Color.PINK);
                 }
                 else{

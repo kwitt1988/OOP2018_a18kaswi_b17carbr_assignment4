@@ -5,7 +5,7 @@ import java.util.TimerTask;
 public class TetrisController {
     private TetrisBoard tetrisBoard = new TetrisBoard();
     private BlockFactory blockFactory = new BlockFactory();
-    private TetrisBlock newBlock = new BlockSquare(tetrisBoard);
+    private TetrisBlock newBlock = new BlockL(tetrisBoard);
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -33,6 +33,10 @@ public class TetrisController {
 
     public void moveRight(){
         newBlock.moveRight();
+    }
+
+    public void rotateBlock(){
+        newBlock.rotateBlock();
     }
 
     private String[][] lockBlock(){

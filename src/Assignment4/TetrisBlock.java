@@ -9,4 +9,4 @@ public interface TetrisBlock {
     void moveLeft();
     void moveRight();
     void moveDropDown();void rotateBlock();
-}//asdas
+}

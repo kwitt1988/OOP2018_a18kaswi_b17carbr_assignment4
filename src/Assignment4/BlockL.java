@@ -38,6 +38,20 @@ public class BlockL extends BlockModel {
                     newRow = (currentRow - 1);
                     break;
                 }
+            case 90:
+                if (currentPiece == currentPiece1) {
+                    newRow = (currentRow + 2);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newRow = (currentRow + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newRow = currentRow;
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newRow = (currentRow - 1);
+                    break;
+                }
         }
         return newRow;
     }
@@ -49,7 +63,6 @@ public class BlockL extends BlockModel {
             case 0:
                 if (currentPiece == currentPiece1) {
                     newColumn = (currentColumn + 2);
-                    System.out.println(newColumn);
                     break;
                 } else if (currentPiece == currentPiece2) {
                     newColumn = (currentColumn + 1);
@@ -59,6 +72,20 @@ public class BlockL extends BlockModel {
                     break;
                 } else if (currentPiece == currentPiece4) {
                     newColumn = (currentColumn - 1);
+                    break;
+                }
+            case 90:
+                if (currentPiece == currentPiece1) {
+                    newColumn = currentColumn;
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newColumn = (currentColumn + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newColumn = (currentColumn + 1);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newColumn = (currentColumn + 1);
                     break;
                 }
         }

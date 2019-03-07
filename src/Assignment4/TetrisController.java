@@ -5,16 +5,17 @@ import java.util.TimerTask;
 public class TetrisController {
     private TetrisBoard tetrisBoard = new TetrisBoard();
     private BlockFactory blockFactory = new BlockFactory();
-    TetrisBlock newBlock = new BlockSquare(tetrisBoard);
+    private TetrisBlock newBlock = new BlockSquare(tetrisBoard);
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
                 newBlock.moveDown();
-                tetrisBoard.setTetrisBoardTest(newBlock);
+                // BLIR KOOOKOOOO OM VI KÖR SETTETRIS FÖR STRING[][]
+                tetrisBoard.setTetrisBoardObject(newBlock);
                 if(newBlock.getLockBlock()){
-                    tetrisBoard.setTetrisBoard(lockBlock());
+                    tetrisBoard.setTetrisBoardString(lockBlock());
                     newBlock = blockFactory.getBlock(tetrisBoard);
                 }
             }
@@ -34,7 +35,7 @@ public class TetrisController {
         newBlock.moveRight();
     }
 
-    public String[][] lockBlock(){
+    private String[][] lockBlock(){
         String[][] newBoard = new String[18][8];
         for(int row = 0; row < tetrisBoard.getTetrisBoard().length; row++){
             for(int column = 0; column < tetrisBoard.getTetrisBoard()[row].length; column++){
@@ -45,5 +46,4 @@ public class TetrisController {
         }
         return newBoard;
     }
-
 }

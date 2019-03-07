@@ -1,7 +1,5 @@
 package Assignment4;
 
-import java.util.Arrays;
-
 class TetrisBoard {
     public String tetrisBoard[][]={
             /* 0 */   {" "," "," "," "," "," "," "," "},
@@ -29,7 +27,7 @@ class TetrisBoard {
         return tetrisBoard;
     }
 
-    public void setTetrisBoard(String[][] newBoard){
+    public void setTetrisBoardString(String[][] newBoard){
         for (int row = 0; row < newBoard.length; row++){
             for (int column = 0; column < newBoard[row].length; column++){
                     tetrisBoard[row][column] = newBoard[row][column];
@@ -37,7 +35,7 @@ class TetrisBoard {
         }
     }
 
-    public void setTetrisBoardTest(TetrisBlock block){
+    public void setTetrisBoardObject(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "Square") {

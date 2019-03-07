@@ -8,8 +8,5 @@ public interface TetrisBlock {
     void moveDown();
     void moveLeft();
     void moveRight();
-    void moveDropDown();
-    void rotateBlock();
-
-
+    void moveDropDown();void rotateBlock();
 }

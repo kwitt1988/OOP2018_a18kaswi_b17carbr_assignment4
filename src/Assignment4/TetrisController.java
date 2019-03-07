@@ -11,7 +11,7 @@ public class TetrisController {
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
-                //newBlock.moveDown();
+                newBlock.moveDown();
 
                 // BLIR KOOOKOOOO OM VI KÖR SETTETRIS FÖR STRING[][]
                 tetrisBoard.setTetrisBoardObject(newBlock);

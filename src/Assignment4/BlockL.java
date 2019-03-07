@@ -38,19 +38,19 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    System.out.println(currentRow + 2 + " row 1");
+                    System.out.println(currentRow + 2 +" = row, piece 1");
                     newRow = currentRow + 2;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    System.out.println(currentRow + 1 + "row 2");
+                    System.out.println(currentRow + 1 + " = row, piece 2");
                     newRow = currentRow + 1;
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentRow + "row 3");
+                    System.out.println(currentRow + " = row, piece 3");
                     newRow = currentRow;
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    System.out.println(currentRow -1 + "row 4");
+                    System.out.println(currentRow - 1 + " = row, piece4");
                     newRow = (currentRow - 1);
                     break;
                 }
@@ -78,19 +78,19 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    System.out.println(currentColumn + "column 1");
+                    System.out.println(currentColumn + " = colum, piece 1");
                     newColumn = currentColumn;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    System.out.println(currentColumn +1  + "column 2");
+                    System.out.println(currentColumn + 1 + " = colum, piece 2");
                     newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentColumn +2 + "column 3");
+                    System.out.println(currentColumn + 2 + " = colum, piece3");
                     newColumn = (currentColumn + 2);
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    System.out.println(currentColumn +1 + "column 4");
+                    System.out.println(currentColumn + 1 + " = colum, piece4");
                     newColumn = (currentColumn + 1);
                     break;
                 }

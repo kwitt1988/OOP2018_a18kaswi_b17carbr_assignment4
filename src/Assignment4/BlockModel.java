@@ -105,7 +105,6 @@ public class BlockModel implements TetrisBlock {
 
 
     public void rotateBlock(){
-        System.out.println(angle);
         rotateBlock1();
         rotateBlock2();
         rotateBlock3();
@@ -137,30 +136,30 @@ public class BlockModel implements TetrisBlock {
 
     @SuppressWarnings("Duplicates")
     public void rotateBlock1() {
-        for (int row = 0; row < blockPosition.length - 1; row++) {
-            for (int column = 0; column < blockPosition[row].length -1; column++) {
+        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
                 if(blockPosition[row][column] == currentPiece1){
-                    String currentPiecePosition = blockPosition[row][column];
-                    int newRow = rotateRow(row, currentPiecePosition);
-                    int newColumn = rotateColumn(column, currentPiecePosition);
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
                     blockPosition[newRow][newColumn] = blockPosition[row][column];
                     blockPosition[row][column] = " ";
-                    break;
+                    break outer;
                 }
             }
         }
     }
     @SuppressWarnings("Duplicates")
     public void rotateBlock2() {
-        for (int row = 0; row < blockPosition.length - 1; row++) {
+        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length -1; column++) {
                 if(blockPosition[row][column] == currentPiece2){
-                    String currentPiecePosition = blockPosition[row][column];
-                    int newRow = rotateRow(row, currentPiecePosition);
-                    int newColumn = rotateColumn(column, currentPiecePosition);
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
                     blockPosition[newRow][newColumn] = blockPosition[row][column];
                     blockPosition[row][column] = " ";
-                    break;
+                    break outer;
                 }
             }
         }
@@ -168,15 +167,15 @@ public class BlockModel implements TetrisBlock {
 
     @SuppressWarnings("Duplicates")
     public void rotateBlock3() {
-        for (int row = 0; row < blockPosition.length - 1; row++) {
+        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length -1; column++) {
                 if(blockPosition[row][column] == currentPiece3){
-                    String currentPiecePosition = blockPosition[row][column];
-                    int newRow = rotateRow(row, currentPiecePosition);
-                    int newColumn = rotateColumn(column, currentPiecePosition);
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
                     blockPosition[newRow][newColumn] = blockPosition[row][column];
                     blockPosition[row][column] = " ";
-                    break;
+                    break outer;
                 }
             }
         }
@@ -184,15 +183,15 @@ public class BlockModel implements TetrisBlock {
 
     @SuppressWarnings("Duplicates")
     public void rotateBlock4() {
-        for (int row = 0; row < blockPosition.length - 1; row++) {
+        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length -1; column++) {
                 if(blockPosition[row][column] == currentPiece4){
-                    String currentPiecePosition = blockPosition[row][column];
-                    int newRow = rotateRow(row, currentPiecePosition);
-                    int newColumn = rotateColumn(column, currentPiecePosition);
+                    String currentPiece = blockPosition[row][column];
+                    int newRow = rotateRow(row, currentPiece);
+                    int newColumn = rotateColumn(column, currentPiece);
                     blockPosition[newRow][newColumn] = blockPosition[row][column];
                     blockPosition[row][column] = " ";
-                    break;
+                    break outer;
                 }
             }
         }

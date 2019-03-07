@@ -39,7 +39,8 @@ public class TetrisController {
         String[][] newBoard = new String[18][8];
         for(int row = 0; row < tetrisBoard.getTetrisBoard().length; row++){
             for(int column = 0; column < tetrisBoard.getTetrisBoard()[row].length; column++){
-                if(tetrisBoard.getTetrisBoard()[row][column] == "Square") {
+                if(tetrisBoard.getTetrisBoard()[row][column] == "currentPiece1" || tetrisBoard.getTetrisBoard()[row][column] == "currentPiece2" ||
+                        tetrisBoard.getTetrisBoard()[row][column] == "currentPiece3" || tetrisBoard.getTetrisBoard()[row][column] == "currentPiece4"){
                     newBoard[row][column] = "CurrentBlock";
                 } else newBoard = tetrisBoard.getTetrisBoard();
             }

@@ -3,7 +3,10 @@ package Assignment4;
 public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
     boolean lockBlock = false;
-    public String blockType;
+    public String currentPiece1 = "currentPiece1";
+    public String currentPiece2 = "currentPiece2";
+    public String currentPiece3 = "currentPiece3";
+    public String currentPiece4 = "currentPiece4";
 
     BlockModel(){
     }
@@ -23,7 +26,8 @@ public class BlockModel implements TetrisBlock {
         String[][] newBlockPosition = new String[18][8];
         for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length; column++) {
-                if(blockPosition[row][column] == blockType){
+                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row + 1][column] = blockPosition[row][column];
                 } else if(blockPosition[row][column] == "CurrentBlock"){
                     newBlockPosition[row][column] = blockPosition[row][column];
@@ -41,7 +45,8 @@ public class BlockModel implements TetrisBlock {
         String[][] newBlockPosition = new String[18][8];
         for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length - 1; column++) {
-                if(row < 18 && blockPosition[row][column] == blockType ){
+                if(row < 18 && blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row][column -1] = blockPosition[row][column];
                 } else if(blockPosition[row][column] == "CurrentBlock"){
                     newBlockPosition[row][column] = blockPosition[row][column];
@@ -59,7 +64,8 @@ public class BlockModel implements TetrisBlock {
         String[][] newBlockPosition = new String[18][8];
         for (int row = 0; row < blockPosition.length - 1; row++) {
             for (int column = 0; column < blockPosition[row].length - 1; column++) {
-                if(row < 18 && blockPosition[row][column] == blockType){
+                if(row < 18 && blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row][column + 1] = blockPosition[row][column];
                 } else if(blockPosition[row][column] == "CurrentBlock"){
                     newBlockPosition[row][column] = blockPosition[row][column];
@@ -96,7 +102,8 @@ public class BlockModel implements TetrisBlock {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length - 1; column++){
-                if(blockPosition[row][column] == "Square"){
+                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     if (column  == 0) {
                         System.out.println("false");
                         validMove = false;
@@ -114,7 +121,8 @@ public class BlockModel implements TetrisBlock {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length - 1; column++){
-                if(blockPosition[row][column] == "Square"){
+                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     if (column + 1 == 9) {
                         System.out.println("false");
                         validMove = false;
@@ -132,7 +140,8 @@ public class BlockModel implements TetrisBlock {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length; column++){
-                if(blockPosition[row][column] == "Square"){
+                if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
+                        || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     if(row + 1 == 18){
                         validMove = false;
                     } else if(blockPosition[row +1][column] == "CurrentBlock"){

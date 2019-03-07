@@ -73,7 +73,7 @@ public class GuiGameView extends GuiView{
                     blockPanelArray[row][column].setBackground(Color.RED);
                 }
 
-                else if(tetrisBoard[row][column].equals("Square")){
+                else if(tetrisBoard[row][column].startsWith("currentPiece")){
                     blockPanelArray[row][column].setBackground(Color.ORANGE);
                 }
 
@@ -81,7 +81,7 @@ public class GuiGameView extends GuiView{
                     blockPanelArray[row][column].setBackground(Color.BLACK);
                 }
 
-                else if(tetrisBoard[row][column].equals(null)){
+                else if(tetrisBoard[row][column].equals("asdf")){
                     blockPanelArray[row][column].setBackground(Color.PINK);
                 }
                 else{

@@ -2,39 +2,74 @@ package Assignment4;
 
 public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
-    private String blockType;
+    boolean lockBlock = false;
+    public String blockType;
 
     BlockModel(){
     }
 
     @Override
-    public boolean getLockBlock() {
-        return false;
+    public void setLockBlock(boolean x){
+        lockBlock = x;
     }
 
     @Override
-    public void setLockBlock() {
-
+    public boolean getLockBlock(){
+        return lockBlock;
     }
 
     @Override
-    public void lockBlock() {
-
+    public void moveDown(){
+        String[][] newBlockPosition = new String[18][8];
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length; column++) {
+                if(blockPosition[row][column] == blockType){
+                    newBlockPosition[row + 1][column] = blockPosition[row][column];
+                } else if(blockPosition[row][column] == "CurrentBlock"){
+                    newBlockPosition[row][column] = blockPosition[row][column];
+                }
+            }
+        }
+        if(checkValidMoveDown(blockPosition)){
+            setBlockPosition(newBlockPosition);
+        } else if(checkValidMoveDown(newBlockPosition) == false){
+            setLockBlock(true);
+        }
     }
 
-    @Override
-    public void moveDown() {
-
-    }
-
-    @Override
     public void moveLeft() {
+        String[][] newBlockPosition = new String[18][8];
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length - 1; column++) {
+                if(row < 18 && blockPosition[row][column] == blockType ){
+                    newBlockPosition[row][column -1] = blockPosition[row][column];
+                } else if(blockPosition[row][column] == "CurrentBlock"){
+                    newBlockPosition[row][column] = blockPosition[row][column];
+                }
+            }
+        }
 
+        if(checkValidMoveLeft(blockPosition)) {
+            setBlockPosition(newBlockPosition);
+        } else moveDown();
     }
 
     @Override
     public void moveRight() {
+        String[][] newBlockPosition = new String[18][8];
+        for (int row = 0; row < blockPosition.length - 1; row++) {
+            for (int column = 0; column < blockPosition[row].length - 1; column++) {
+                if(row < 18 && blockPosition[row][column] == blockType){
+                    newBlockPosition[row][column + 1] = blockPosition[row][column];
+                } else if(blockPosition[row][column] == "CurrentBlock"){
+                    newBlockPosition[row][column] = blockPosition[row][column];
+                }
+            }
+        }
 
+        if(checkValidMoveRight(blockPosition)) {
+            setBlockPosition(newBlockPosition);
+        } else moveDown();
     }
 
     @Override
@@ -42,6 +77,10 @@ public class BlockModel implements TetrisBlock {
         return blockPosition;
     }
 
+    @Override
+    public void setBlockPosition(String[][] newBlockPosition){
+        blockPosition = newBlockPosition;
+    }
 
     @Override
     public void moveDropDown() {
@@ -53,7 +92,7 @@ public class BlockModel implements TetrisBlock {
 
     }
 
-    public boolean checkValidMoveLeft(String[][] blockPosition) {
+    private boolean checkValidMoveLeft(String[][] blockPosition) {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length - 1; column++){
@@ -71,7 +110,7 @@ public class BlockModel implements TetrisBlock {
         return validMove;
     }
 
-    public boolean checkValidMoveRight(String[][] blockPosition){
+    private boolean checkValidMoveRight(String[][] blockPosition){
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length - 1; column++){
@@ -89,7 +128,7 @@ public class BlockModel implements TetrisBlock {
         return validMove;
     }
 
-    public boolean checkValidMoveDown(String[][] blockPosition){
+    private boolean checkValidMoveDown(String[][] blockPosition){
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length; column++){

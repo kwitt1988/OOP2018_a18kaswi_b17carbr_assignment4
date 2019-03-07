@@ -7,8 +7,8 @@ import java.awt.event.*;
 public class GuiGameView extends GuiView{
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
-    private static final JPanel[][] blockPanelArray = new JPanel[19][8];
-    TetrisController tetrisController = new TetrisController();
+    private JPanel[][] blockPanelArray = new JPanel[19][8];
+    private TetrisController tetrisController = new TetrisController();
 
     GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
@@ -20,7 +20,37 @@ public class GuiGameView extends GuiView{
         }
     }
 
-    void setBlockPanel(){
+    @Override
+    void listeners() {
+        mainPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int KeyCode = e.getKeyCode();
+                if(KeyCode == KeyEvent.VK_E){
+                    System.out.println("tja");
+                }
+                if(KeyCode == KeyEvent.VK_LEFT){
+                    tetrisController.moveLeft();
+
+                }
+                if(KeyCode == KeyEvent.VK_RIGHT){
+                    tetrisController.moveRight();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+    }
+
+    private void setBlockPanel(){
         for(int row = 0; row < blockPanelArray.length; row++){
                 for(int column = 0; column < blockPanelArray[row].length; column++){
                     blockPanelArray[row][column] = new JPanel();
@@ -32,7 +62,7 @@ public class GuiGameView extends GuiView{
         mainPanel.setFocusable(true);
     }
 
-    synchronized void compareArrays(){
+    private void compareArrays(){
             String tetrisBoard[][] = tetrisController.getCurrentBoard();
         for(int row = 0; row < tetrisBoard.length; row++){
             for(int column = 0; column < tetrisBoard[row].length; column++){
@@ -61,43 +91,5 @@ public class GuiGameView extends GuiView{
         }
     }
 
-    @Override
-    void frameSettings(JFrame frame, JPanel mainPanel, int x, int y) {
-        super.frameSettings(frame, mainPanel, x, y);
-    }
-
-    @Override
-    void listeners() {
-        mainPanel.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                int KeyCode = e.getKeyCode();
-                if(KeyCode == KeyEvent.VK_E){
-                    System.out.println("tja");
-
-                }
-                if(KeyCode == KeyEvent.VK_LEFT){
-                    tetrisController.moveLeft();
-
-                }
-                if(KeyCode == KeyEvent.VK_RIGHT){
-                    tetrisController.moveRight();
-                    mainFrame.revalidate();
-                    mainFrame.repaint();
-                }
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
-
-    }
 
 }

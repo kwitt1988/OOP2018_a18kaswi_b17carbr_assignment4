@@ -4,16 +4,14 @@ import java.util.Arrays;
 
 public class BlockL extends BlockModel {
     String blockType = "L";
-    int angle = 0;
 
     BlockL(TetrisBoard tetrisBoard) {
-        super.angle = angle;
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
-        setBlockPosition(0);
+        setBlockPosition();
     }
 
     // UNIQUE FOR BLOCK
-    public void setBlockPosition(int angle) {
+    public void setBlockPosition() {
         blockPosition[1][2] = currentPiece1;
         blockPosition[2][2] = currentPiece2;
         blockPosition[3][2] = currentPiece3;
@@ -40,15 +38,19 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    newRow = (currentRow + 2);
+                    System.out.println(currentRow + 2 + " row 1");
+                    newRow = currentRow + 2;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    newRow = (currentRow + 1);
+                    System.out.println(currentRow + 1 + "row 2");
+                    newRow = currentRow + 1;
                     break;
                 } else if (currentPiece == currentPiece3) {
+                    System.out.println(currentRow + "row 3");
                     newRow = currentRow;
                     break;
                 } else if (currentPiece == currentPiece4) {
+                    System.out.println(currentRow -1 + "row 4");
                     newRow = (currentRow - 1);
                     break;
                 }
@@ -76,15 +78,19 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
+                    System.out.println(currentColumn + "column 1");
                     newColumn = currentColumn;
                     break;
                 } else if (currentPiece == currentPiece2) {
+                    System.out.println(currentColumn +1  + "column 2");
                     newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    newColumn = (currentColumn + 1);
+                    System.out.println(currentColumn +2 + "column 3");
+                    newColumn = (currentColumn + 2);
                     break;
                 } else if (currentPiece == currentPiece4) {
+                    System.out.println(currentColumn +1 + "column 4");
                     newColumn = (currentColumn + 1);
                     break;
                 }

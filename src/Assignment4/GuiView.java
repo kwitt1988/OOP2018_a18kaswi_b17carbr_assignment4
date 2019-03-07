@@ -14,7 +14,6 @@ abstract class GuiView extends JFrame {
         frame.setSize(x, y);
         frame.setLocationRelativeTo(null);
         listeners();
-        mainPanel.setFocusable(true);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }

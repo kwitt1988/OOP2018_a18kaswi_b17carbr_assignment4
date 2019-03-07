@@ -7,9 +7,8 @@ import java.awt.event.*;
 public class GuiGameView extends GuiView{
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
-    private static final JPanel[][] blockPanelArray = new JPanel[19][8];
+    private static final JPanel[][] blockPanelArray = new JPanel[22][12];
     TetrisController tetrisController = new TetrisController();
-
 
     GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
@@ -23,22 +22,37 @@ public class GuiGameView extends GuiView{
 
     void setBlockPanel(){
         for(int row = 0; row < blockPanelArray.length; row++){
-                for(int column = 0; column < blockPanelArray[row].length; column++){
-                    blockPanelArray[row][column] = new JPanel();
-                    blockPanelArray[row][column].setBackground(Color.green);
-                    mainPanel.add(blockPanelArray[row][column]);
-                }
+            for(int column = 0; column < blockPanelArray[row].length; column++){
+                blockPanelArray[row][column] = new JPanel();
+                blockPanelArray[row][column].setBackground(Color.green);
+                mainPanel.add(blockPanelArray[row][column]);
+            }
         }
-        mainPanel.setLayout(new GridLayout(19, 8));
+        mainPanel.setLayout(new GridLayout(22, 12));
         mainPanel.setFocusable(true);
     }
 
-    void compareArrays(){
-        String tetrisBoard[][] = TetrisBoard.getTetrisBoard();
+    synchronized void compareArrays(){
+        String tetrisBoard[][] = tetrisController.getCurrentBoard();
         for(int row = 0; row < tetrisBoard.length; row++){
             for(int column = 0; column < tetrisBoard[row].length; column++){
-                if(tetrisBoard[row][column].substring(0,1).equals("I")){
+                if(tetrisBoard[row][column].equals("Iv")){
                     blockPanelArray[row][column].setBackground(Color.blue);
+                }
+                else if(tetrisBoard[row][column].equals("CurrentBlock")){
+                    blockPanelArray[row][column].setBackground(Color.RED);
+                }
+
+                else if(tetrisBoard[row][column].equals("Square")){
+                    blockPanelArray[row][column].setBackground(Color.ORANGE);
+                }
+
+                else if(tetrisBoard[row][column].equals("-")){
+                    blockPanelArray[row][column].setBackground(Color.BLACK);
+                }
+
+                else if(tetrisBoard[row][column].equals(null)){
+                    blockPanelArray[row][column].setBackground(Color.PINK);
                 }
                 else{
                     blockPanelArray[row][column].setBackground(Color.green);
@@ -55,7 +69,6 @@ public class GuiGameView extends GuiView{
     @Override
     void listeners() {
         mainPanel.addKeyListener(new KeyListener() {
-
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -65,7 +78,6 @@ public class GuiGameView extends GuiView{
                 int KeyCode = e.getKeyCode();
                 if(KeyCode == KeyEvent.VK_E){
                     System.out.println("tja");
-                    tetrisController.rotateBlock();
 
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){
@@ -74,6 +86,8 @@ public class GuiGameView extends GuiView{
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
                     tetrisController.moveRight();
+                    mainFrame.revalidate();
+                    mainFrame.repaint();
                 }
 
             }

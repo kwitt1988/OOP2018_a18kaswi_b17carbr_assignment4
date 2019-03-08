@@ -159,15 +159,10 @@ public class BlockModel implements TetrisBlock {
                     String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    System.out.println(newRow);
-                    System.out.println(newColumn + " equals");
-                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
-                    System.out.println("removing below");
-                    System.out.println(row);
-                    System.out.println(column);
-                    System.out.println("-------");
                     blockPosition[newRow][newColumn] = copy[row][column];
-                    blockPosition[row][column] = " ";
+                    if(blockPosition[row][column].equals("currentPiece1")){
+                        blockPosition[row][column] = " ";
+                    }
                     break outer;
                 }
             }
@@ -181,15 +176,10 @@ public class BlockModel implements TetrisBlock {
                     String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    System.out.println(newRow);
-                    System.out.println(newColumn + " equals");
-                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
-                    System.out.println("removing below");
-                    System.out.println(row);
-                    System.out.println(column);
-                    System.out.println("-------");
                     blockPosition[newRow][newColumn] = copy[row][column];
-                    blockPosition[row][column] = " ";
+                    if(blockPosition[row][column].equals("currentPiece2")){
+                        blockPosition[row][column] = " ";
+                    }
                     break outer;
                 }
             }
@@ -204,15 +194,10 @@ public class BlockModel implements TetrisBlock {
                     String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    System.out.println(newRow);
-                    System.out.println(newColumn + " equals");
-                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
-                    System.out.println("removing below");
-                    System.out.println(row);
-                    System.out.println(column);
-                    System.out.println("-------");
                     blockPosition[newRow][newColumn] = copy[row][column];
-                    blockPosition[row][column] = " ";
+                    if(blockPosition[row][column].equals("currentPiece3")){
+                        blockPosition[row][column] = " ";
+                    }
                     break outer;
                 }
             }
@@ -227,15 +212,10 @@ public class BlockModel implements TetrisBlock {
                     String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    System.out.println(newRow);
-                    System.out.println(newColumn + " equals");
-                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
-                    System.out.println("removing below");
-                    System.out.println(row);
-                    System.out.println(column);
-                    System.out.println("-------");
                     blockPosition[newRow][newColumn] = copy[row][column];
-                    blockPosition[row][column] = " ";
+                    if(blockPosition[row][column].equals("currentPiece4")){
+                        blockPosition[row][column] = " ";
+                    }
                     break outer;
                 }
             }

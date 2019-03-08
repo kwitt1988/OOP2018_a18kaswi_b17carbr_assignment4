@@ -12,19 +12,35 @@ public class GuiGameView extends GuiView {
     private JPanel scorePanel = new JPanel();
     private JPanel[][] blockPanelArray = new JPanel[22][12];
     private TetrisController tetrisController = new TetrisController();
+    private JButton startButton = new JButton("start");
 
     public GuiGameView(){
-        frameSettings(mainFrame, mainPanel, 800, 600);
+
+    }
+
+    public void putBorder(){
+        for(int row = 1; row < blockPanelArray.length - 1; row++){
+            for(int column = 1; column < blockPanelArray[row].length - 1; column++){
+                blockPanelArray[row][column].setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            }
+        }
+    }
+
+    public void startScreen(){
+        frameSettings(mainFrame, mainPanel, 400, 800);
         setPanels();
+        putBorder();
         tetrisController.gameLoop();
         while(true){
             compareArrays();
         }
+
     }
 
     private void setScorePanel(){
         scorePanel.setSize(800, 50);
         scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        scorePanel.add(startButton);
         scorePanel.add(new JLabel("SCORE: CALL ON SCORE HERE"));
         scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
@@ -49,7 +65,8 @@ public class GuiGameView extends GuiView {
 
     @Override
     void listeners() {
-        mainFrame.addKeyListener(new KeyListener() {
+        mainFrame.addKeyListener(new KeyListener()
+        {
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -84,6 +101,11 @@ public class GuiGameView extends GuiView {
             }
         });
 
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
     }
 
     private void setBlockPanel(){

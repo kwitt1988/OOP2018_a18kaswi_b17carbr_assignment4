@@ -11,7 +11,11 @@ public class TetrisController {
     private TetrisBlock newBlock = blockFactory.getBlock(tetrisBoard);
     private Boolean gap;
     private int numClears;
+    public boolean active;
 
+    public void setActive(){
+        active = true;
+    }
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){

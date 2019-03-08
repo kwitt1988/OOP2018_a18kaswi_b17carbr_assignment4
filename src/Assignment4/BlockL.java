@@ -18,6 +18,7 @@ public class BlockL extends BlockModel {
         blockPosition[3][3] = currentPiece4;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public int rotateRow(int currentRow, String currentPiece) {
         int newRow = 0;
@@ -38,26 +39,51 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    System.out.println(currentRow + 2 +" = row, piece 1");
                     newRow = currentRow + 2;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    System.out.println(currentRow + 1 + " = row, piece 2");
                     newRow = currentRow + 1;
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentRow + " = row, piece 3");
                     newRow = currentRow;
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    System.out.println(currentRow - 1 + " = row, piece4");
                     newRow = (currentRow - 1);
+                    break;
+                }
+            case 180:
+                if (currentPiece == currentPiece1) {
+                    newRow = currentRow;
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newRow = (currentRow + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newRow = (currentRow + 2);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newRow = (currentRow +1);
+                    break;
+                }
+            case 270:
+                if (currentPiece == currentPiece1) {
+                    newRow = (currentRow - 2);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newRow = (currentRow - 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newRow = (currentRow);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newRow = (currentRow + 1);
                     break;
                 }
         }
         return newRow;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public int rotateColumn(int currentColumn, String currentPiece) {
         int newColumn = 0;
@@ -78,20 +104,46 @@ public class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    System.out.println(currentColumn + " = colum, piece 1");
                     newColumn = currentColumn;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    System.out.println(currentColumn + 1 + " = colum, piece 2");
                     newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentColumn + 2 + " = colum, piece3");
                     newColumn = (currentColumn + 2);
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    System.out.println(currentColumn + 1 + " = colum, piece4");
                     newColumn = (currentColumn + 1);
+                    break;
+                }
+
+            case 180:
+                if (currentPiece == currentPiece1) {
+                    newColumn = (currentColumn - 2);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newColumn = (currentColumn - 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newColumn = (currentColumn);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newColumn = (currentColumn + 1);
+                    break;
+                }
+
+            case 270:
+                if (currentPiece == currentPiece1) {
+                    newColumn = (currentColumn);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newColumn = (currentColumn - 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newColumn = (currentColumn - 2);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newColumn = (currentColumn - 1);
                     break;
                 }
         }

@@ -34,32 +34,34 @@ public class TetrisController {
 
     public String[][] clearRows(String[][] Board){
         String[][] newBoard = Board;
-
         gap = false;
         for(int row = 20; row > 1; row--){
             for(int column = 1; column < Board[row].length - 1; column++) {
-                if(tetrisBoard.getTetrisBoard()[row][column] == " "){
-                    gap = true;
-                    System.out.println("ITS TRUE");
-                    break;
+                while(isFull(Board, row)){
+                    newBoard = deleteRow(row, Board);
 
                 }
-                System.out.println("Checking row :" + row + "and column :" + column + "To se if :" + gap);
-
-            }
-            if(!gap){
-                newBoard = deleteRow(row, Board);
-                row += 1;
-                numClears +=1;
-
 
 
             }
+
         }
         return newBoard;
 
     }
+
+    public Boolean isFull(String[][] Board, int row) {
+        for (int column = 1; column < Board[row].length - 1; column++) {
+            if (tetrisBoard.getTetrisBoard()[row][column] == " ") {
+                return false;
+
+            }
+        }
+        return true;
+    }
+
     public String[][] deleteRow(int row, String[][] Board ){
+        System.out.println("hello");
         for(int j=row-1; j > 1;j--){
             for(int i=1;i< 11;i++)
                Board[j+1][i] = tetrisBoard.getTetrisBoard()[j][i];

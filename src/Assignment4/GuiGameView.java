@@ -7,13 +7,22 @@ import java.awt.event.*;
 public class GuiGameView extends GuiView{
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
+    private JPanel scorePanel = new JPanel();
     private JPanel[][] blockPanelArray = new JPanel[22][12];
     private TetrisController tetrisController = new TetrisController();
+
 
     GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
         setBlockPanel();
-        mainFrame.add(mainPanel);
+        mainFrame.add(scorePanel, BorderLayout.NORTH);
+        mainPanel.setBackground(Color.BLACK);
+        mainFrame.add(mainPanel, BorderLayout.CENTER);
+        scorePanel.setSize(800, 50);
+        scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        scorePanel.add(new JLabel("SCORE: CALL ON SCORE HERE"));
+        scorePanel.setBackground(Color.BLUE);
+        scorePanel.setOpaque(true);
         tetrisController.gameLoop();
         while(true){
             compareArrays();

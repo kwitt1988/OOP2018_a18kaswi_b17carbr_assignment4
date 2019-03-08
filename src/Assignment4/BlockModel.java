@@ -2,6 +2,8 @@ package Assignment4;
 
 public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
+
+
     int angle;
     boolean lockBlock = false;
     public String currentPiece1 = "currentPiece1";
@@ -109,6 +111,7 @@ public class BlockModel implements TetrisBlock {
         rotateBlock2();
         rotateBlock3();
         rotateBlock4();
+        System.out.println(angle);
         setAngle(angle);
     }
 
@@ -217,7 +220,7 @@ public class BlockModel implements TetrisBlock {
                         System.out.println("false");
                         validMove = false;
                     }
-                    else  if (blockPosition[row][column +1] == "CurrentBlock"){
+                    else  if (blockPosition[row][column -1] == "CurrentBlock"){
                         validMove = false;
                     }
                 }
@@ -256,6 +259,9 @@ public class BlockModel implements TetrisBlock {
                     } else if(blockPosition[row +1][column] == "CurrentBlock"){
                         validMove = false;
                     } else if(blockPosition[row][column +1] == "CurrentBlock"){
+                        validMove = false;
+                    }
+                    else if(blockPosition[row][column +1] == "CurrentBlock"){
                         validMove = false;
                     }
                 }

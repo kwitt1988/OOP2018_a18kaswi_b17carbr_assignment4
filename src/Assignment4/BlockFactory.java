@@ -12,7 +12,7 @@ public class BlockFactory {
         switch (random){
             case 1: newBlock = new BlockL(board);
                 break;
-            case 2: newBlock = new BlockL(board);
+            case 2: newBlock = new BlockS(board);
                 break;
         }
         return newBlock;

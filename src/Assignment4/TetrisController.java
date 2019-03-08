@@ -21,7 +21,7 @@ public class TetrisController {
                 }
             }
 
-        }, 1000*1,1000*1);
+        }, 300*1,300*1);
     }
 
     public String[][] getCurrentBoard(){

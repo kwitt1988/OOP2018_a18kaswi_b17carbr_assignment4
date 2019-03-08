@@ -1,5 +1,9 @@
 package Assignment4;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import java.util.Arrays;
+
 public class BlockModel implements TetrisBlock {
     String[][] blockPosition;
 
@@ -107,11 +111,11 @@ public class BlockModel implements TetrisBlock {
 
 
     public void rotateBlock(){
-        rotateBlock1();
-        rotateBlock2();
-        rotateBlock3();
-        rotateBlock4();
-        System.out.println(angle);
+        String[][] newBlockPosition = copyOfOldBoard(blockPosition);
+        rotateBlock1(newBlockPosition);
+        rotateBlock2(newBlockPosition);
+        rotateBlock3(newBlockPosition);
+        rotateBlock4(newBlockPosition);
         setAngle(angle);
     }
 
@@ -137,15 +141,32 @@ public class BlockModel implements TetrisBlock {
         angle = currentAngle;
     }
 
+    public String[][] copyOfOldBoard(String[][] currentBoard){
+        String[][] copy = new String[22][12];
+        for(int row = 0; row < currentBoard.length - 1; row++){
+            for(int column = 0; column < currentBoard[row].length; column++){
+                copy[row][column] = currentBoard[row][column];
+            }
+        }
+        return copy;
+    }
+
     @SuppressWarnings("Duplicates")
-    public void rotateBlock1() {
-        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
-            for (int column = 0; column < blockPosition[row].length; column++) {
-                if(blockPosition[row][column] == currentPiece1){
-                    String currentPiece = blockPosition[row][column];
+    public void rotateBlock1(String[][] copy) {
+        outer: for (int row = 0; row < copy.length - 1; row++) {
+            for (int column = 0; column < copy[row].length; column++) {
+                if(copy[row][column] == currentPiece1){
+                    String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    System.out.println(newRow);
+                    System.out.println(newColumn + " equals");
+                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
+                    System.out.println("removing below");
+                    System.out.println(row);
+                    System.out.println(column);
+                    System.out.println("-------");
+                    blockPosition[newRow][newColumn] = copy[row][column];
                     blockPosition[row][column] = " ";
                     break outer;
                 }
@@ -153,14 +174,21 @@ public class BlockModel implements TetrisBlock {
         }
     }
     @SuppressWarnings("Duplicates")
-    public void rotateBlock2() {
-        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
-            for (int column = 0; column < blockPosition[row].length -1; column++) {
-                if(blockPosition[row][column] == currentPiece2){
-                    String currentPiece = blockPosition[row][column];
+    public void rotateBlock2(String[][] copy) {
+        outer: for (int row = 0; row < copy.length - 1; row++) {
+            for (int column = 0; column < copy[row].length; column++) {
+                if(copy[row][column] == currentPiece2){
+                    String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    System.out.println(newRow);
+                    System.out.println(newColumn + " equals");
+                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
+                    System.out.println("removing below");
+                    System.out.println(row);
+                    System.out.println(column);
+                    System.out.println("-------");
+                    blockPosition[newRow][newColumn] = copy[row][column];
                     blockPosition[row][column] = " ";
                     break outer;
                 }
@@ -169,14 +197,21 @@ public class BlockModel implements TetrisBlock {
     }
 
     @SuppressWarnings("Duplicates")
-    public void rotateBlock3() {
-        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
-            for (int column = 0; column < blockPosition[row].length -1; column++) {
-                if(blockPosition[row][column] == currentPiece3){
-                    String currentPiece = blockPosition[row][column];
+    public void rotateBlock3(String[][] copy) {
+        outer: for (int row = 0; row < copy.length - 1; row++) {
+            for (int column = 0; column < copy[row].length; column++) {
+                if(copy[row][column] == currentPiece3){
+                    String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    System.out.println(newRow);
+                    System.out.println(newColumn + " equals");
+                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
+                    System.out.println("removing below");
+                    System.out.println(row);
+                    System.out.println(column);
+                    System.out.println("-------");
+                    blockPosition[newRow][newColumn] = copy[row][column];
                     blockPosition[row][column] = " ";
                     break outer;
                 }
@@ -185,14 +220,21 @@ public class BlockModel implements TetrisBlock {
     }
 
     @SuppressWarnings("Duplicates")
-    public void rotateBlock4() {
-        outer: for (int row = 0; row < blockPosition.length - 1; row++) {
-            for (int column = 0; column < blockPosition[row].length -1; column++) {
-                if(blockPosition[row][column] == currentPiece4){
-                    String currentPiece = blockPosition[row][column];
+    public void rotateBlock4(String[][] copy) {
+        outer: for (int row = 0; row < copy.length - 1; row++) {
+            for (int column = 0; column < copy[row].length; column++) {
+                if(copy[row][column] == currentPiece4){
+                    String currentPiece = copy[row][column];
                     int newRow = rotateRow(row, currentPiece);
                     int newColumn = rotateColumn(column, currentPiece);
-                    blockPosition[newRow][newColumn] = blockPosition[row][column];
+                    System.out.println(newRow);
+                    System.out.println(newColumn + " equals");
+                    System.out.println(blockPosition[newRow][newColumn] = copy[row][column]);
+                    System.out.println("removing below");
+                    System.out.println(row);
+                    System.out.println(column);
+                    System.out.println("-------");
+                    blockPosition[newRow][newColumn] = copy[row][column];
                     blockPosition[row][column] = " ";
                     break outer;
                 }

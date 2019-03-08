@@ -10,7 +10,7 @@ public class BlockFactory {
         TetrisBlock newBlock = new BlockModel();
         int random = (int)(Math.random() * 2) + 1;
         switch (random){
-            case 1: newBlock = new BlockL(board);
+            case 1: newBlock = new BlockS(board);
                 break;
             case 2: newBlock = new BlockS(board);
                 break;

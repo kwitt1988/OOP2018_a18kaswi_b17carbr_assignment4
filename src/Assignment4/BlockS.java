@@ -3,7 +3,7 @@ package Assignment4;
 import java.util.Arrays;
 
 public class BlockS extends BlockModel {
-    String blockType = "L";
+    String blockType = "S";
 
     BlockS(TetrisBoard tetrisBoard) {
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
@@ -18,6 +18,7 @@ public class BlockS extends BlockModel {
         blockPosition[2][3] = currentPiece4;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public int rotateRow(int currentRow, String currentPiece) {
         int newRow = 0;
@@ -38,19 +39,19 @@ public class BlockS extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    System.out.println(currentRow + 2 +" = row, piece 1");
+                    System.out.println(currentRow - 1 +" = row, piece 1");
                     newRow = currentRow - 1;
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    System.out.println(currentRow + 1 + " = row, piece 2");
+                    System.out.println(currentRow - 2 + " = row, piece 2");
                     newRow = currentRow - 2;
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentRow + " = row, piece 3");
+                    System.out.println(currentRow + 1 + " = row, piece 3");
                     newRow = currentRow + 1;
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    System.out.println(currentRow - 1 + " = row, piece4");
+                    System.out.println(currentRow + " = row, piece4");
                     newRow = (currentRow);
                     break;
                 }
@@ -86,7 +87,7 @@ public class BlockS extends BlockModel {
                     newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    System.out.println(currentColumn + 2 + " = colum, piece3");
+                    System.out.println(currentColumn + " = colum, piece3");
                     newColumn = (currentColumn);
                     break;
                 } else if (currentPiece == currentPiece4) {

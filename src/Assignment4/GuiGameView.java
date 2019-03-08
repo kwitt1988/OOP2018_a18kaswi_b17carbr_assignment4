@@ -21,7 +21,7 @@ public class GuiGameView extends GuiView{
         scorePanel.setSize(800, 50);
         scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         scorePanel.add(new JLabel("SCORE: CALL ON SCORE HERE"));
-        scorePanel.setBackground(Color.BLUE);
+        scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
         tetrisController.gameLoop();
         while(true){

@@ -20,7 +20,7 @@ public class TetrisController {
                 newBlock.fallDown();
                 tetrisBoard.setTetrisBoardObject(newBlock);
                 if(newBlock.getLockBlock()){
-                    tetrisBoard.setTetrisBoardString(clearRows(lockBlock()));
+                    tetrisBoard.setTetrisBoardString(clearRows(lockBlock()));  // S
                     newBlock = blockFactory.getBlock(tetrisBoard);
                 }
             }

@@ -268,23 +268,33 @@ class BlockModel implements TetrisBlock {
 
     private boolean checkValidMoveDown(String[][] blockPosition){
         boolean validMove = true;
-        for(int row = 0; row < blockPosition.length; row++) {
+        outer: for(int row = 0; row < blockPosition.length; row++) {
             for(int column = 0; column < blockPosition[row].length; column++){
                 if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
                         || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     if(blockPosition[row +1][column] == "-"){
+                        System.out.println("error 1 ");
                         validMove = false;
+                        setLockBlock(true);
+                        break outer;
                     } else if(blockPosition[row +1][column] == "STUCKBLOCK"){
+                        System.out.println("error 2 ");
+                        setLockBlock(true);
                         validMove = false;
+                        break outer;
                     } else if(blockPosition[row + 1][column] == "STUCKBLOCK"){
+                        System.out.println("error 3 ");
                         validMove = false;
+                        break outer;
                     }
                     else if(blockPosition[row][column] == "STUCKBLOCK"){
+
                         validMove = false;
                     }
                 }
             }
         }
+
         return validMove;
     }
 }

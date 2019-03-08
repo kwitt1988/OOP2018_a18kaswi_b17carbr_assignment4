@@ -79,6 +79,7 @@ public class GuiGameView extends GuiView {
         }
         mainPanel.setLayout(new GridLayout(22, 12));
         mainPanel.setFocusable(true);
+        mainFrame.setFocusable(true);
     }
 
     private void compareArrays(){

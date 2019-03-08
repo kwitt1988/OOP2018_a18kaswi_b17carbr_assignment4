@@ -1,5 +1,8 @@
 package Assignment4;
 
+import Assignment4.Blocks.BlockFactory;
+import Assignment4.Blocks.TetrisBlock;
+
 import java.util.TimerTask;
 
 public class TetrisController {
@@ -14,9 +17,7 @@ public class TetrisController {
         new java.util.Timer().schedule(new TimerTask(){
             @Override
             public void run() {
-                newBlock.moveDown();
-
-                // BLIR KOOOKOOOO OM VI KÖR SETTETRIS FÖR STRING[][]
+                newBlock.fallDown();
                 tetrisBoard.setTetrisBoardObject(newBlock);
                 if(newBlock.getLockBlock()){
                     tetrisBoard.setTetrisBoardString(clearRows(lockBlock()));
@@ -75,8 +76,16 @@ public class TetrisController {
         newBlock.moveRight();
     }
 
+    public void moveDown(){
+        newBlock.fallDown();
+    }
+
     public void rotateBlock(){
         newBlock.rotateBlock();
+    }
+
+    public void dropDown(){
+        newBlock.moveDropDown();
     }
 
     private String[][] lockBlock(){
@@ -85,7 +94,7 @@ public class TetrisController {
             for(int column = 0; column < tetrisBoard.getTetrisBoard()[row].length; column++){
                 if(tetrisBoard.getTetrisBoard()[row][column] == "currentPiece1" || tetrisBoard.getTetrisBoard()[row][column] == "currentPiece2" ||
                         tetrisBoard.getTetrisBoard()[row][column] == "currentPiece3" || tetrisBoard.getTetrisBoard()[row][column] == "currentPiece4"){
-                    newBoard[row][column] = "CurrentBlock";
+                    newBoard[row][column] = "STUCKBLOCK";
                 } else newBoard = tetrisBoard.getTetrisBoard();
             }
         }

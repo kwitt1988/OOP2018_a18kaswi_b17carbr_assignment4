@@ -1,18 +1,19 @@
-package Assignment4;
+package Assignment4.GUI;
+
+import Assignment4.TetrisController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GuiGameView extends GuiView{
+public class GuiGameView extends GuiView {
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
     private JPanel scorePanel = new JPanel();
     private JPanel[][] blockPanelArray = new JPanel[22][12];
     private TetrisController tetrisController = new TetrisController();
 
-
-    GuiGameView(){
+    public GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
         setBlockPanel();
         mainFrame.add(scorePanel, BorderLayout.NORTH);
@@ -52,6 +53,12 @@ public class GuiGameView extends GuiView{
                 if(KeyCode == KeyEvent.VK_UP) {
                     tetrisController.rotateBlock();
                 }
+                if(KeyCode == KeyEvent.VK_DOWN){
+                    tetrisController.moveDown();
+                }
+                if(KeyCode == KeyEvent.VK_X){
+                    tetrisController.dropDown();
+                }
             }
 
             @Override
@@ -81,7 +88,7 @@ public class GuiGameView extends GuiView{
                 if(tetrisBoard[row][column].equals("Iv")){
                     blockPanelArray[row][column].setBackground(Color.blue);
                 }
-                else if(tetrisBoard[row][column].equals("CurrentBlock")){
+                else if(tetrisBoard[row][column].equals("STUCKBLOCK")){
                     blockPanelArray[row][column].setBackground(Color.RED);
                 }
 
@@ -102,6 +109,4 @@ public class GuiGameView extends GuiView{
             }
         }
     }
-
-
 }

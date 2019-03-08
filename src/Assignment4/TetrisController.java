@@ -13,6 +13,7 @@ public class TetrisController {
     private int numClears;
     public boolean active;
     private long score;
+    private int lvl = 500;
 
 
     public void setActive(){
@@ -31,7 +32,7 @@ public class TetrisController {
                 }
             }
 
-        }, 300*1,300*1);
+        }, lvl*1,lvl*1);
     }
 
     public String[][] getCurrentBoard(){
@@ -71,7 +72,6 @@ public class TetrisController {
     }
 
     public String[][] deleteRow(int row, String[][] Board ){
-        int cat = 0;
         for(int j=row-1; j > 1;j--){
             for(int i=1;i< 11;i++) {
                 Board[j + 1][i] = tetrisBoard.getTetrisBoard()[j][i];
@@ -93,6 +93,7 @@ public class TetrisController {
                 break;
 
         }
+        lvl -= 50;
         numClears  = 0;
         return Board;
     }

@@ -6,6 +6,9 @@ public class TetrisController {
     private TetrisBoard tetrisBoard = new TetrisBoard();
     private BlockFactory blockFactory = new BlockFactory();
     private TetrisBlock newBlock = blockFactory.getBlock(tetrisBoard);
+    private Boolean gap;
+    private int numClears;
+
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -16,7 +19,7 @@ public class TetrisController {
                 // BLIR KOOOKOOOO OM VI KÖR SETTETRIS FÖR STRING[][]
                 tetrisBoard.setTetrisBoardObject(newBlock);
                 if(newBlock.getLockBlock()){
-                    tetrisBoard.setTetrisBoardString(lockBlock());
+                    tetrisBoard.setTetrisBoardString(clearRows(lockBlock()));
                     newBlock = blockFactory.getBlock(tetrisBoard);
                 }
             }
@@ -26,6 +29,42 @@ public class TetrisController {
 
     public String[][] getCurrentBoard(){
         return tetrisBoard.getTetrisBoard();
+    }
+
+    public String[][] clearRows(String[][] Board){
+        String[][] newBoard = Board;
+
+        gap = false;
+        for(int row = 20; row > 1; row--){
+            for(int column = 1; column < Board[row].length - 1; column++) {
+                if(tetrisBoard.getTetrisBoard()[row][column] == " "){
+                    gap = true;
+                    System.out.println("ITS TRUE");
+                    break;
+
+                }
+                System.out.println("Checking row :" + row + "and column :" + column + "To se if :" + gap);
+
+            }
+            if(!gap){
+                newBoard = deleteRow(row, Board);
+                row += 1;
+                numClears +=1;
+
+
+
+            }
+        }
+        return newBoard;
+
+    }
+    public String[][] deleteRow(int row, String[][] Board ){
+        for(int j=row-1; j > 1;j--){
+            for(int i=1;i< 11;i++)
+               Board[j+1][i] = tetrisBoard.getTetrisBoard()[j][i];
+        }
+
+        return Board;
     }
 
     public void moveLeft(){

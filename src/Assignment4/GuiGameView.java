@@ -31,7 +31,7 @@ public class GuiGameView extends GuiView{
 
     @Override
     void listeners() {
-        mainPanel.addKeyListener(new KeyListener() {
+        mainFrame.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }

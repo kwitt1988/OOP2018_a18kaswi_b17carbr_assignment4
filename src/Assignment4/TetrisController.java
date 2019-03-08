@@ -12,6 +12,8 @@ public class TetrisController {
     private Boolean gap;
     private int numClears;
     public boolean active;
+    private long score;
+
 
     public void setActive(){
         active = true;
@@ -42,7 +44,9 @@ public class TetrisController {
         for(int row = 20; row > 1; row--){
             for(int column = 1; column < Board[row].length - 1; column++) {
                 while(isFull(Board, row)){
+                    numClears++;
                     newBoard = deleteRow(row, Board);
+
 
                 }
 
@@ -50,6 +54,8 @@ public class TetrisController {
             }
 
         }
+
+
         return newBoard;
 
     }
@@ -65,13 +71,37 @@ public class TetrisController {
     }
 
     public String[][] deleteRow(int row, String[][] Board ){
-        System.out.println("hello");
+        int cat = 0;
         for(int j=row-1; j > 1;j--){
-            for(int i=1;i< 11;i++)
-               Board[j+1][i] = tetrisBoard.getTetrisBoard()[j][i];
+            for(int i=1;i< 11;i++) {
+                Board[j + 1][i] = tetrisBoard.getTetrisBoard()[j][i];
+            }
         }
 
+        switch(numClears){
+            case 1:
+                score += 100;
+                break;
+            case 2:
+                score += 300;
+                break;
+            case 3:
+                score += 500;
+                break;
+            case 4:
+                score += 800;
+                break;
+
+        }
+        numClears  = 0;
         return Board;
+    }
+    public void numClears(){
+        System.out.println("FIITTA");
+        numClears++;
+    }
+    public long getScore(){
+        return score;
     }
 
     public void moveLeft(){

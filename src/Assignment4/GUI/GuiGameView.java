@@ -10,6 +10,7 @@ public class GuiGameView extends GuiView {
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
     private JPanel scorePanel = new JPanel();
+    private JLabel scoreLabel = new JLabel();
     private JPanel[][] blockPanelArray = new JPanel[22][12];
     private TetrisController tetrisController = new TetrisController();
     private JButton startButton = new JButton("start");
@@ -33,6 +34,7 @@ public class GuiGameView extends GuiView {
         tetrisController.gameLoop();
         while(true){
             compareArrays();
+            scoreLabel.setText("SCORE :" + tetrisController.getScore());
         }
 
     }
@@ -41,7 +43,7 @@ public class GuiGameView extends GuiView {
         scorePanel.setSize(800, 50);
         scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         scorePanel.add(startButton);
-        scorePanel.add(new JLabel("SCORE: CALL ON SCORE HERE"));
+        scorePanel.add(scoreLabel);
         scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
     }

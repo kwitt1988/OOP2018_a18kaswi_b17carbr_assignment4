@@ -10,4 +10,5 @@ public interface TetrisBlock {
     boolean getLockBlock();
     void setBlockPosition(String[][] newBlockPosition);
     String[][] getBlockPosition();
+    String getBlockType();
 }

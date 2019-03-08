@@ -14,10 +14,10 @@ public class BlockFactory {
         int random = (int)(Math.random() * 3) + 1;
         switch (random){
             case 1: newBlock = new BlockLine(board);
-            break;
-            case 2: newBlock = new BlockLine(board);
                 break;
-            case 3: newBlock = new BlockLine(board);
+            case 2: newBlock = new BlockL(board);
+                break;
+            case 3: newBlock = new BlockL(board);
                 break;
 
         }

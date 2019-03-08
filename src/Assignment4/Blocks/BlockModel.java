@@ -14,6 +14,10 @@ class BlockModel implements TetrisBlock {
     BlockModel(){
     }
 
+    public String getBlockType(){
+        return blockType;
+    }
+
     @Override
     public void setLockBlock(boolean x){
         lockBlock = x;
@@ -288,13 +292,11 @@ class BlockModel implements TetrisBlock {
                         break outer;
                     }
                     else if(blockPosition[row][column] == "STUCKBLOCK"){
-
                         validMove = false;
                     }
                 }
             }
         }
-
         return validMove;
     }
 }

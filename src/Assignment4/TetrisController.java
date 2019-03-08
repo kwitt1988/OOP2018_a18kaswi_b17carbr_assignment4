@@ -100,4 +100,8 @@ public class TetrisController {
         }
         return newBoard;
     }
+
+     public String getBlockType(){
+        return newBlock.getBlockType();
+    }
 }

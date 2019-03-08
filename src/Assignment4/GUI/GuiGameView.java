@@ -15,18 +15,35 @@ public class GuiGameView extends GuiView {
 
     public GuiGameView(){
         frameSettings(mainFrame, mainPanel, 800, 600);
-        setBlockPanel();
-        mainFrame.add(scorePanel, BorderLayout.NORTH);
-        mainPanel.setBackground(Color.BLACK);
-        mainFrame.add(mainPanel, BorderLayout.CENTER);
+        setPanels();
+        tetrisController.gameLoop();
+        while(true){
+            compareArrays();
+        }
+    }
+
+    private void setScorePanel(){
         scorePanel.setSize(800, 50);
         scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         scorePanel.add(new JLabel("SCORE: CALL ON SCORE HERE"));
         scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
-        tetrisController.gameLoop();
-        while(true){
-            compareArrays();
+    }
+
+    private void setPanels(){
+        setBlockPanel();
+        setScorePanel();
+        mainFrame.add(scorePanel, BorderLayout.NORTH);
+        mainPanel.setBackground(Color.BLACK);
+        mainFrame.add(mainPanel, BorderLayout.CENTER);
+    }
+
+    private void colors(int y, int x){
+        String blockType = tetrisController.getBlockType();
+        switch(blockType){
+            case "Line": blockPanelArray[y][x].setBackground(Color.orange);
+            break;
+            case "L": blockPanelArray[y][x].setBackground(Color.CYAN);
         }
     }
 
@@ -94,7 +111,7 @@ public class GuiGameView extends GuiView {
                 }
 
                 else if(tetrisBoard[row][column].startsWith("currentPiece")){
-                    blockPanelArray[row][column].setBackground(Color.ORANGE);
+                    colors(row, column);
                 }
 
                 else if(tetrisBoard[row][column].equals("-")){

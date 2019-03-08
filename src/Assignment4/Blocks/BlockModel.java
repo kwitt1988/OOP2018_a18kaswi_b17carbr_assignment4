@@ -1,19 +1,15 @@
-package Assignment4;
+package Assignment4.Blocks;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
-import java.util.Arrays;
-
-public class BlockModel implements TetrisBlock {
+class BlockModel implements TetrisBlock {
     String[][] blockPosition;
-
+    String blockType;
 
     int angle;
     boolean lockBlock = false;
-    public String currentPiece1 = "currentPiece1";
-    public String currentPiece2 = "currentPiece2";
-    public String currentPiece3 = "currentPiece3";
-    public String currentPiece4 = "currentPiece4";
+    String currentPiece1 = "currentPiece1";
+    String currentPiece2 = "currentPiece2";
+    String currentPiece3 = "currentPiece3";
+    String currentPiece4 = "currentPiece4";
 
     BlockModel(){
     }
@@ -29,14 +25,14 @@ public class BlockModel implements TetrisBlock {
     }
 
     @Override
-    public void moveDown(){
+    public void fallDown(){
         String[][] newBlockPosition = new String[22][12];
         for (int row = 0; row < blockPosition.length; row++) {
             for (int column = 0; column < blockPosition[row].length; column++) {
                 if(blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
                         || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row + 1][column] = blockPosition[row][column];
-                } else if(blockPosition[row][column] == "CurrentBlock"){
+                } else if(blockPosition[row][column] == "STUCKBLOCK"){
                     newBlockPosition[row][column] = blockPosition[row][column];
                 }
                 else if(blockPosition[row][column] == "-"){
@@ -46,7 +42,7 @@ public class BlockModel implements TetrisBlock {
         }
         if(checkValidMoveDown(blockPosition)){
             setBlockPosition(newBlockPosition);
-        } else if(checkValidMoveDown(newBlockPosition) == false){
+        } else if(!checkValidMoveDown(newBlockPosition)){
             setLockBlock(true);
         }
     }
@@ -58,7 +54,7 @@ public class BlockModel implements TetrisBlock {
                 if(row < 22 && blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
                         || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row][column -1] = blockPosition[row][column];
-                } else if(blockPosition[row][column] == "CurrentBlock"){
+                } else if(blockPosition[row][column] == "STUCKBLOCK"){
                     newBlockPosition[row][column] = blockPosition[row][column];
                 }
                 else if(blockPosition[row][column] == "-"){
@@ -69,7 +65,7 @@ public class BlockModel implements TetrisBlock {
 
         if(checkValidMoveLeft(blockPosition)) {
             setBlockPosition(newBlockPosition);
-        } else moveDown();
+        } else fallDown();
     }
 
     @Override
@@ -80,7 +76,7 @@ public class BlockModel implements TetrisBlock {
                 if(row < 22 && blockPosition[row][column] == currentPiece1 || blockPosition[row][column] == currentPiece2
                         || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     newBlockPosition[row][column + 1] = blockPosition[row][column];
-                } else if(blockPosition[row][column] == "CurrentBlock"){
+                } else if(blockPosition[row][column] == "STUCKBLOCK"){
                     newBlockPosition[row][column] = blockPosition[row][column];
                 }
                 else if(blockPosition[row][column] == "-"){
@@ -91,7 +87,7 @@ public class BlockModel implements TetrisBlock {
 
         if(checkValidMoveRight(blockPosition)) {
             setBlockPosition(newBlockPosition);
-        } else moveDown();
+        } else fallDown();
     }
 
     @Override
@@ -106,9 +102,10 @@ public class BlockModel implements TetrisBlock {
 
     @Override
     public void moveDropDown() {
-
+        while(checkValidMoveDown(blockPosition)){
+            fallDown();
+        }
     }
-
 
     public void rotateBlock(){
         String[][] newBlockPosition = copyOfOldBoard(blockPosition);
@@ -119,7 +116,7 @@ public class BlockModel implements TetrisBlock {
         setAngle(angle);
     }
 
-    public void setAngle(int currentAngle){
+    void setAngle(int currentAngle){
         switch(currentAngle){
             case 0: {
                 currentAngle = 90;
@@ -141,7 +138,15 @@ public class BlockModel implements TetrisBlock {
         angle = currentAngle;
     }
 
-    public String[][] copyOfOldBoard(String[][] currentBoard){
+    public int rotateRow(int currentRow, String currentPiece){
+        return 0;
+    }
+
+    public int rotateColumn(int currentColumn, String currentPiece){
+        return 0;
+    }
+
+    private String[][] copyOfOldBoard(String[][] currentBoard){
         String[][] copy = new String[22][12];
         for(int row = 0; row < currentBoard.length - 1; row++){
             for(int column = 0; column < currentBoard[row].length; column++){
@@ -152,7 +157,7 @@ public class BlockModel implements TetrisBlock {
     }
 
     @SuppressWarnings("Duplicates")
-    public void rotateBlock1(String[][] copy) {
+    private void rotateBlock1(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
                 if(copy[row][column] == currentPiece1){
@@ -168,8 +173,9 @@ public class BlockModel implements TetrisBlock {
             }
         }
     }
+
     @SuppressWarnings("Duplicates")
-    public void rotateBlock2(String[][] copy) {
+    private void rotateBlock2(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
                 if(copy[row][column] == currentPiece2){
@@ -187,7 +193,7 @@ public class BlockModel implements TetrisBlock {
     }
 
     @SuppressWarnings("Duplicates")
-    public void rotateBlock3(String[][] copy) {
+    private void rotateBlock3(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
                 if(copy[row][column] == currentPiece3){
@@ -205,7 +211,7 @@ public class BlockModel implements TetrisBlock {
     }
 
     @SuppressWarnings("Duplicates")
-    public void rotateBlock4(String[][] copy) {
+    private void rotateBlock4(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
                 if(copy[row][column] == currentPiece4){
@@ -222,16 +228,6 @@ public class BlockModel implements TetrisBlock {
         }
     }
 
-
-
-    public int rotateRow(int currentRow, String currentPiece){
-        return 0;
-    }
-
-    public int rotateColumn(int currentColumn, String currentPiece){
-        return 0;
-    }
-
     private boolean checkValidMoveLeft(String[][] blockPosition) {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
@@ -242,7 +238,7 @@ public class BlockModel implements TetrisBlock {
                         System.out.println("false");
                         validMove = false;
                     }
-                    else  if (blockPosition[row][column -1] == "CurrentBlock"){
+                    else  if (blockPosition[row][column -1] == "STUCKBLOCK"){
                         validMove = false;
                     }
                 }
@@ -261,7 +257,7 @@ public class BlockModel implements TetrisBlock {
                         System.out.println("false");
                         validMove = false;
                     }
-                    else  if (blockPosition[row][column +1] == "CurrentBlock"){
+                    else  if (blockPosition[row][column +1] == "STUCKBLOCK"){
                         validMove = false;
                     }
                 }
@@ -278,12 +274,12 @@ public class BlockModel implements TetrisBlock {
                         || blockPosition[row][column] == currentPiece3 || blockPosition[row][column] == currentPiece4){
                     if(blockPosition[row +1][column] == "-"){
                         validMove = false;
-                    } else if(blockPosition[row +1][column] == "CurrentBlock"){
+                    } else if(blockPosition[row +1][column] == "STUCKBLOCK"){
                         validMove = false;
-                    } else if(blockPosition[row][column +1] == "CurrentBlock"){
+                    } else if(blockPosition[row + 1][column] == "STUCKBLOCK"){
                         validMove = false;
                     }
-                    else if(blockPosition[row][column +1] == "CurrentBlock"){
+                    else if(blockPosition[row][column] == "STUCKBLOCK"){
                         validMove = false;
                     }
                 }
@@ -292,4 +288,3 @@ public class BlockModel implements TetrisBlock {
         return validMove;
     }
 }
-

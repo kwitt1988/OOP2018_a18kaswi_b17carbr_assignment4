@@ -13,7 +13,7 @@ public class TetrisController {
     private Boolean gap;
     private int numClears;
     private long score;
-    private int lvl = 500;
+    private int lvl = 1;
 
     public TetrisController(){
         gameLoop();
@@ -33,7 +33,7 @@ public class TetrisController {
                 }
             }
 
-        }, lvl*1,lvl*1);
+        }, 1000*1,1000*1);
     }
 
     public String[][] getCurrentBoard(){
@@ -49,14 +49,12 @@ public class TetrisController {
                     numClears++;
                     newBoard = deleteRow(row, Board);
 
-
                 }
 
 
             }
 
         }
-
 
         return newBoard;
 
@@ -66,11 +64,12 @@ public class TetrisController {
         for (int column = 1; column < Board[row].length - 1; column++) {
             if (tetrisBoard.getTetrisBoard()[row][column] == " ") {
                 return false;
-
             }
         }
+
         return true;
     }
+
 
     public String[][] deleteRow(int row, String[][] Board ){
         for(int j=row-1; j > 1;j--){
@@ -94,18 +93,17 @@ public class TetrisController {
                 break;
 
         }
-        lvl -= 50;
+        lvl += 1;
         numClears  = 0;
         return Board;
     }
-    public void numClears(){
-        System.out.println("FIITTA");
-        numClears++;
-    }
+
     public long getScore(){
         return score;
     }
-
+    public int getLvl(){
+        return lvl;
+    }
     public void moveLeft(){
         newBlock.moveLeft();
         tetrisBoard.setTetrisBoardObject(newBlock);

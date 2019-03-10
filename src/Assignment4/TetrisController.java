@@ -16,7 +16,7 @@ public class TetrisController {
     private int lvl = 1;
 
     public TetrisController(){
-
+        gameLoop();
     }
 
 

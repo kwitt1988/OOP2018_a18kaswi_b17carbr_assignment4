@@ -137,6 +137,7 @@ class BlockModel implements TetrisBlock {
 
     @SuppressWarnings("Duplicates")
     private void rotateBlock1(String[][] copy) {
+
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
                 if(copy[row][column] == currentPiece1){

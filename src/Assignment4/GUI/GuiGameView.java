@@ -73,6 +73,8 @@ public class GuiGameView extends GuiView {
             case "Line": blockPanelArray[y][x].setBackground(Color.orange);
             break;
             case "L": blockPanelArray[y][x].setBackground(Color.CYAN);
+            break;
+            case"S": blockPanelArray[y][x].setBackground(Color.orange);
         }
     }
 
@@ -121,7 +123,7 @@ public class GuiGameView extends GuiView {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tetrisController.gameLoop();
+
             }
         });
     }

@@ -88,7 +88,6 @@ public class GuiGameView extends GuiView {
             public void keyPressed(KeyEvent e) {
                 int KeyCode = e.getKeyCode();
                 if(KeyCode == KeyEvent.VK_E){
-                    System.out.println("tja");
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){
                     tetrisController.moveLeft();
@@ -122,6 +121,7 @@ public class GuiGameView extends GuiView {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tetrisController.gameLoop();
             }
         });
     }

@@ -83,7 +83,10 @@ class BlockLine extends BlockModel {
                     break;
                 }
         }
-        return newRow;
+        if(validRowValue(newRow)){
+            return newRow;
+        }
+        else return currentRow;
     }
 
     @SuppressWarnings("Duplicates")
@@ -150,6 +153,8 @@ class BlockLine extends BlockModel {
                     break;
                 }
         }
-        return newColumn;
+        if(validColumnValue(newColumn)){
+            return newColumn;
+        } else return currentColumn;
     }
 }

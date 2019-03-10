@@ -12,11 +12,27 @@ public class GuiGameView extends GuiView {
     private JPanel scorePanel = new JPanel();
     private JLabel scoreLabel = new JLabel();
     private JPanel[][] blockPanelArray = new JPanel[22][12];
-    private TetrisController tetrisController = new TetrisController();
+    private TetrisController tetrisController;
     private JButton startButton = new JButton("start");
 
-    public GuiGameView(){
+    private Timer timer = new Timer(20, new TimerListener());
 
+    private class TimerListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            updateGUI();
+        }
+    }
+
+    private void updateGUI(){
+            compareArrays();
+            scoreLabel.setText("SCORE :" + tetrisController.getScore());
+    }
+
+
+    public GuiGameView(TetrisController gameController){
+        tetrisController = gameController;
+        gameScreen();
     }
 
     public void putBorder(){
@@ -27,16 +43,11 @@ public class GuiGameView extends GuiView {
         }
     }
 
-    public void startScreen(){
+    public void gameScreen(){
         frameSettings(mainFrame, mainPanel, 400, 800);
         setPanels();
         putBorder();
-        tetrisController.gameLoop();
-        while(true){
-            compareArrays();
-            scoreLabel.setText("SCORE :" + tetrisController.getScore());
-        }
-
+        timer.start();
     }
 
     private void setScorePanel(){
@@ -81,19 +92,24 @@ public class GuiGameView extends GuiView {
                 }
                 if(KeyCode == KeyEvent.VK_LEFT){
                     tetrisController.moveLeft();
+                    updateGUI();
 
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
                     tetrisController.moveRight();
+                    updateGUI();
                 }
                 if(KeyCode == KeyEvent.VK_UP) {
                     tetrisController.rotateBlock();
+                    updateGUI();
                 }
                 if(KeyCode == KeyEvent.VK_DOWN){
                     tetrisController.moveDown();
+                    updateGUI();
                 }
                 if(KeyCode == KeyEvent.VK_X){
                     tetrisController.dropDown();
+                    updateGUI();
                 }
             }
 

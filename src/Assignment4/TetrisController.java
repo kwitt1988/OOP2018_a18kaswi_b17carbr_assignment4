@@ -2,6 +2,7 @@ package Assignment4;
 
 import Assignment4.Blocks.BlockFactory;
 import Assignment4.Blocks.TetrisBlock;
+import Assignment4.GUI.GuiGameView;
 
 import java.util.TimerTask;
 
@@ -11,14 +12,14 @@ public class TetrisController {
     private TetrisBlock newBlock = blockFactory.getBlock(tetrisBoard);
     private Boolean gap;
     private int numClears;
-    public boolean active;
     private long score;
     private int lvl = 500;
 
-
-    public void setActive(){
-        active = true;
+    public TetrisController(){
+        gameLoop();
     }
+
+
 
     public void gameLoop(){
         new java.util.Timer().schedule(new TimerTask(){
@@ -107,22 +108,27 @@ public class TetrisController {
 
     public void moveLeft(){
         newBlock.moveLeft();
+        tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
     public void moveRight(){
         newBlock.moveRight();
+        tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
     public void moveDown(){
         newBlock.fallDown();
+        tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
     public void rotateBlock(){
         newBlock.rotateBlock();
+        tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
     public void dropDown(){
         newBlock.moveDropDown();
+        tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
     private String[][] lockBlock(){

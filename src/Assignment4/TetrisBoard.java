@@ -34,11 +34,11 @@ public class TetrisBoard {
         return tetrisBoard;
     }
 
-    void setTetrisBoardString(String[][] newBoard){
+    synchronized void setTetrisBoardString(String[][] newBoard){
         tetrisBoard = Arrays.copyOf(newBoard, newBoard.length);
     }
 
-    void setTetrisBoardObject(TetrisBlock block){
+    synchronized void setTetrisBoardObject(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "currentPiece1"

@@ -1,5 +1,10 @@
 package Assignment4.Blocks;
 
+// The BlockModel hold the execution of all the of blocks behaviours, this
+// includes being responsible for collision detection and movement in
+// different directions, Rotation of blocks in regard to their current
+// angle, getters and setters for blockType, setAngle and so on.
+
 class BlockModel implements TetrisBlock {
     String[][] blockPosition;
     String blockType;
@@ -29,6 +34,13 @@ class BlockModel implements TetrisBlock {
         return lockBlock;
     }
 
+    // ---- Method for moving a piece downwards.
+    // Looping through the array by each row and each corresponding column within that row until there is sub piece found.
+    // Each sub piece is added to a local array representing the board with the value + 1 added to the row, this is to simulate movement downwards.
+    // All other elements are then copied over to this local array.
+    // Check movement Validation, i.e. if the next move downwards equals collision or not.
+    // If true, copies the local board to the live one via setBlockPosition, essentially moving the whole piece one downwards.
+    // If false then collision happened, the block gets locked.
     @Override
     public void fallDown(){
         String[][] newBlockPosition = new String[22][12];
@@ -52,6 +64,13 @@ class BlockModel implements TetrisBlock {
         }
     }
 
+    // ---- Method for moving a piece left.
+    // Looping through the array by each row and each corresponding column within that row until there is sub piece found.
+    // Each sub piece is added to a local array representing the board with the value - 1 added to the column, this is to simulate movement left.
+    // All other elements are then copied over to this local array.
+    // Check movement Validation, i.e. if the next move left equals collision or not.
+    // If true, copies the local board to the live one via setBlockPosition, essentially moving the whole piece one step to the left.
+    // If false then collision happened, does not move to the left, instead calls on the fallDown method and moves downwards instead if possible
     public void moveLeft() {
         String[][] newBlockPosition = new String[22][12];
         for (int row = 0; row < blockPosition.length; row++) {
@@ -73,6 +92,13 @@ class BlockModel implements TetrisBlock {
         } else fallDown();
     }
 
+    // ---- Method for moving a piece right.
+    // Looping through the array by each row and each corresponding column within that row until there is sub piece found.
+    // Each sub piece is added to a local array representing the board with the value + 1 added to the column, this is to simulate movement right.
+    // All other elements are then copied over to this local array.
+    // Check movement Validation, i.e. if the next move right equals collision or not.
+    // If true, copies the local board to the live one via setBlockPosition, essentially moving the whole piece one step to the right.
+    // If false then collision happened, does not move to the right, instead calls on the fallDown method and moves downwards instead if possible
     @Override
     public void moveRight() {
         String[][] newBlockPosition = new String[22][12];
@@ -95,16 +121,17 @@ class BlockModel implements TetrisBlock {
         } else fallDown();
     }
 
+    // Get the block, i.e. the board with the current block position
     @Override
     public String[][] getBlockPosition() {
         return blockPosition;
     }
-
+    // Sets the block, i.e. sets the board with the new block position
     @Override
     public void setBlockPosition(String[][] newBlockPosition){
         blockPosition = newBlockPosition;
     }
-
+    // Calls fallDown method as long as movement downward is valid
     @Override
     public void moveDropDown() {
         while(checkValidMoveDown(blockPosition)){
@@ -112,6 +139,11 @@ class BlockModel implements TetrisBlock {
         }
     }
 
+    // ---- Start method for rotation of the block
+    // Creates a copy of the current board
+    // Creates a copy of the current board that will hold the new positions after rotation
+    // Calls methods that rotates each sub piece and passes in as argument a copy of the board
+    // Completed piece rotation get validated and then set in action on the live board, and finally followed by shifting the angle one step ahead.
     public void rotateBlock(){
         String[][] newBlockPosition = copyOfOldBoard(blockPosition);
         finalPosition = copyOfOldBoard(blockPosition);
@@ -125,6 +157,7 @@ class BlockModel implements TetrisBlock {
         }
     }
 
+    // Creates a copy of the live board
     private String[][] copyOfOldBoard(String[][] currentBoard){
         String[][] copy = new String[22][12];
         for(int row = 0; row < currentBoard.length; row++){
@@ -134,7 +167,10 @@ class BlockModel implements TetrisBlock {
         }
         return copy;
     }
-
+    // ---- Rotation for the first sub piece
+    // Looping through the array by each row and each corresponding column within that row until currentPiece1 is found
+    // The row and corresponding column then gets individually rotated at then set within finalPosition array
+    // Lastly the previous currentPiece1 entry get removed
     @SuppressWarnings("Duplicates")
     private void rotateBlock1(String[][] copy) {
 
@@ -153,7 +189,10 @@ class BlockModel implements TetrisBlock {
             }
         }
     }
-
+    // ---- Rotation for the second sub piece
+    // Looping through the array by each row and each corresponding column within that row until currentPiece2 is found
+    // The row and corresponding column then gets individually rotated at then set within finalPosition array
+    // Lastly the previous currentPiece2 entry get removed
     @SuppressWarnings("Duplicates")
     private void rotateBlock2(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
@@ -171,7 +210,10 @@ class BlockModel implements TetrisBlock {
             }
         }
     }
-
+    // ---- Rotation for the third sub piece
+    // Looping through the array by each row and each corresponding column within that row until currentPiece3 is found
+    // The row and corresponding column then gets individually rotated at then set within finalPosition array
+    // Lastly the previous currentPiece3 entry get removed
     @SuppressWarnings("Duplicates")
     private void rotateBlock3(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
@@ -189,7 +231,10 @@ class BlockModel implements TetrisBlock {
             }
         }
     }
-
+    // ---- Rotation for the fourth sub piece
+    // Looping through the array by each row and each corresponding column within that row until currentPiece4 is found
+    // The row and corresponding column then gets individually rotated at then set within finalPosition array
+    // Lastly the previous currentPiece4 entry get removed
     @SuppressWarnings("Duplicates")
     private void rotateBlock4(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
@@ -208,19 +253,21 @@ class BlockModel implements TetrisBlock {
         }
     }
 
+    // Check whether the column value exceeds acceptable value in right direction
     public boolean validColumnValue(int column){
         if(column < 11){
             return true;
         } else return false;
     }
 
+    // Check whether the column value exceeds acceptable value in right direction
     public boolean validRowValue(int row){
         if(row < 22){
             return true;
         }
         else return false;
     }
-
+    // Sets the new angle, used doing rotation to decide what modifications to each row and column is needed for every sub piece
     void setAngle(int currentAngle){
         switch(currentAngle){
             case 0: {
@@ -243,6 +290,7 @@ class BlockModel implements TetrisBlock {
         angle = currentAngle;
     }
 
+
     public int rotateRow(int currentRow, String currentPiece){
         return 0;
     }
@@ -251,6 +299,11 @@ class BlockModel implements TetrisBlock {
         return 0;
     }
 
+    // ---- Validation for movement to the left
+    // Looping through the array by each row and each corresponding column within that row until each sub piece is found
+    // One by one their located and check for collision
+    // This is done by subtracting the current sub piece column by one, gets you the next location to the left the piece will move to
+    // This new left movement is check for collision, if the new position equals "-" or "STUCKBLOCK", then return false, otherwise true
     private boolean checkValidMoveLeft(String[][] blockPosition) {
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
@@ -270,6 +323,11 @@ class BlockModel implements TetrisBlock {
         return validMove;
     }
 
+    // ---- Validation for movement to the right
+    // Looping through the array by each row and each corresponding column within that row until each sub piece is found
+    // One by one their located and check for collision
+    // This is done by adding the current sub piece column by one, gets you the next location to the right the piece will move to
+    // This new right movement is check for collision, if the new position equals "-" , "STUCKBLOCK" or beyond the column value 10 then return false, otherwise true
     private boolean checkValidMoveRight(String[][] blockPosition){
         boolean validMove = true;
         for(int row = 0; row < blockPosition.length; row++) {
@@ -296,6 +354,11 @@ class BlockModel implements TetrisBlock {
         return validMove;
     }
 
+    // ---- Validation for movement downwards
+    // Looping through the array by each row and each corresponding column within that row until each sub piece is found
+    // One by one their located and check for collision
+    // This is done by subtracting the adding sub piece row by one, gets you the next location to the left the piece will move to
+    // This new downwards movement is check for collision, if the new position equals "-" or "STUCKBLOCK", then return false, otherwise true
     private boolean checkValidMoveDown(String[][] blockPosition){
         boolean validMove = true;
         outer: for(int row = 0; row < blockPosition.length; row++) {

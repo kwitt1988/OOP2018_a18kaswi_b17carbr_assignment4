@@ -1,7 +1,7 @@
-package Assignment4.Blocks;
+package Assignment4.Model.Blocks;
 
 
-import Assignment4.TetrisBoard;
+import Assignment4.Model.TetrisBoard;
 
 public class BlockFactory {
 

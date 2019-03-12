@@ -1,7 +1,7 @@
-package Assignment4;
+package Assignment4.Model;
 
 
-import Assignment4.Blocks.TetrisBlock;
+import Assignment4.Model.Blocks.TetrisBlock;
 
 import java.util.Arrays;
 
@@ -30,25 +30,26 @@ public class TetrisBoard {
             /* 20 */  {"-"," "," "," "," "," "," "," "," "," "," ","-"},
             /* 21 */  {"-","-","-","-","-","-","-","-","-","-","-","-"}};
 
-    public String[][] getTetrisBoard(){
+    public synchronized String[][] getTetrisBoard(){
         return tetrisBoard;
     }
 
-    synchronized void setTetrisBoardString(String[][] newBoard){
+    // Fungerar denna alls?
+    public synchronized void setTetrisBoardString(String[][] newBoard){
         tetrisBoard = Arrays.copyOf(newBoard, newBoard.length);
     }
 
-    synchronized void setTetrisBoardObject(TetrisBlock block){
-        for (int row = 0; row < block.getBlockPosition().length; row++){
-            for (int column = 0; column < block.getBlockPosition()[row].length; column++){
-                if(block.getBlockPosition()[row][column] == "currentPiece1"
-                        || block.getBlockPosition()[row][column] == "currentPiece2"
-                        || block.getBlockPosition()[row][column] == "currentPiece3"
-                        || block.getBlockPosition()[row][column] == "currentPiece4") {
-                    tetrisBoard[row][column] = block.getBlockPosition()[row][column];
-                } else if(block.getBlockPosition()[row][column] == "STUCKBLOCK"){
+    public synchronized void setTetrisBoardObject(TetrisBlock block){
+        for (int row = 0; row < block.getCurrentBoard().length; row++){
+            for (int column = 0; column < block.getCurrentBoard()[row].length; column++){
+                if(block.getCurrentBoard()[row][column] == "currentPiece1"
+                        || block.getCurrentBoard()[row][column] == "currentPiece2"
+                        || block.getCurrentBoard()[row][column] == "currentPiece3"
+                        || block.getCurrentBoard()[row][column] == "currentPiece4") {
+                    tetrisBoard[row][column] = block.getCurrentBoard()[row][column];
+                } else if(block.getCurrentBoard()[row][column] == "STUCKBLOCK"){
                     tetrisBoard[row][column] = "STUCKBLOCK";
-                } else if(block.getBlockPosition()[row][column] == "-"){
+                } else if(block.getCurrentBoard()[row][column] == "-"){
                     tetrisBoard[row][column] = "-";
                 }
                 else tetrisBoard[row][column] = " ";

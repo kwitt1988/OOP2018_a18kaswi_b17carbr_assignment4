@@ -1,7 +1,7 @@
-package Assignment4.Model.Blocks;
+package Assignment4.Blocks;
 
 
-import Assignment4.Model.TetrisBoard;
+import Assignment4.TetrisBoard;
 
 public class BlockFactory {
 
@@ -13,10 +13,13 @@ public class BlockFactory {
         TetrisBlock newBlock = new BlockModel();
         int random = (int)(Math.random() * 3) + 1;
         switch (random){
-            case 1: newBlock = new BlockL(board);
+            case 1: newBlock = new BlockLine(board);
                 break;
             case 2: newBlock = new BlockL(board);
                 break;
+            case 3: newBlock = new BlockL(board);
+                break;
+
         }
         return newBlock;
     }

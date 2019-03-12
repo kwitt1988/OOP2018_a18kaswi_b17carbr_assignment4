@@ -1,4 +1,4 @@
-package Assignment4.View;
+package Assignment4.GUI;
 
 import javax.swing.*;
 

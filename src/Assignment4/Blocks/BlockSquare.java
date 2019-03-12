@@ -1,6 +1,6 @@
-package Assignment4.Model.Blocks;
+package Assignment4.Blocks;
 
-import Assignment4.Model.TetrisBoard;
+import Assignment4.TetrisBoard;
 
 import java.util.Arrays;
 
@@ -9,16 +9,16 @@ class BlockSquare extends BlockModel {
 
     protected BlockSquare(TetrisBoard tetrisBoard) {
         super.blockType = blockType;
-        currentBoard = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
+        blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
     }
 
     // UNIQUE FOR BLOCK
     public void setBlockPosition() {
-        currentBoard[1][2] = currentPiece1;
-        currentBoard[1][3] = currentPiece2;
-        currentBoard[2][2] = currentPiece3;
-        currentBoard[2][3] = currentPiece4;
+        blockPosition[1][2] = currentPiece1;
+        blockPosition[1][3] = currentPiece2;
+        blockPosition[2][2] = currentPiece3;
+        blockPosition[2][3] = currentPiece4;
     }
 
     @SuppressWarnings("Duplicates")

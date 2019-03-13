@@ -6,6 +6,7 @@ import Assignment4.Blocks.TetrisBlock;
 import java.util.Arrays;
 
 public class TetrisBoard {
+    // Here is the representation of the board, a two dimensional array of String
     private String tetrisBoard[][]={
             /* 0 */   {"-","-","-","-","-","-","-","-","-","-","-","-"},     // 22 * 12
             /* 1 */   {"-"," "," "," "," "," "," "," "," "," "," ","-"},
@@ -30,14 +31,15 @@ public class TetrisBoard {
             /* 20 */  {"-"," "," "," "," "," "," "," "," "," "," ","-"},
             /* 21 */  {"-","-","-","-","-","-","-","-","-","-","-","-"}};
 
+    // Return the current board
     public String[][] getTetrisBoard(){
         return tetrisBoard;
     }
-
+    // Sets the current board
     synchronized void setTetrisBoardString(String[][] newBoard){
         tetrisBoard = Arrays.copyOf(newBoard, newBoard.length);
     }
-
+    // Sets the current board
     synchronized void setTetrisBoardObject(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){

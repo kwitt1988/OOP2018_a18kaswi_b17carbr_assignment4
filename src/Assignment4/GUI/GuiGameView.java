@@ -5,7 +5,7 @@ import Assignment4.TetrisController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+// The GuiGAmeView is responsible for providing a visual representation of the game to the user
 public class GuiGameView extends GuiView {
     private JFrame mainFrame = new JFrame();
     private JPanel mainPanel = new JPanel();
@@ -16,25 +16,28 @@ public class GuiGameView extends GuiView {
     private JButton startButton = new JButton("start");
 
     private Timer timer = new Timer(20, new TimerListener());
-
+    // Timer for updating the GUI, calls on the method bellow during the span of a game with a certain delay between ticks
     private class TimerListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             updateGUI();
         }
     }
-
+    // Updates the GUI, i.e. calls on a method that shows the current representation of the board visually for the user
+    // Updates the current score of the game
     private void updateGUI(){
         compareArrays();
         scoreLabel.setText("SCORE :" + tetrisController.getScore());
     }
 
-
+    // Calls on a method which starts the gameLoop in the tetrisController
+    // Calls on gameScreen which starts the visual representation of the game and starts the timer above
     public GuiGameView(TetrisController gameController){
         tetrisController = gameController;
         gameScreen();
     }
 
+    //
     public void putBorder(){
         for(int row = 1; row < blockPanelArray.length - 1; row++){
             for(int column = 1; column < blockPanelArray[row].length - 1; column++){
@@ -42,7 +45,9 @@ public class GuiGameView extends GuiView {
             }
         }
     }
-
+    // Sets up and add the panel via GuiView, sets the size of the panel.
+    // Calls on the method setPanels which sets up the block array representing the board and the score panel.
+    // Starts the time above, which updates the visual representation of the game.
     public void gameScreen(){
         frameSettings(mainFrame, mainPanel, 400, 800);
         setPanels();
@@ -50,6 +55,7 @@ public class GuiGameView extends GuiView {
         timer.start();
     }
 
+    // setting size, layout of the scorePanel, adding the scoreLabel such to it.
     private void setScorePanel(){
         scorePanel.setSize(800, 50);
         scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -58,7 +64,9 @@ public class GuiGameView extends GuiView {
         scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
     }
-
+    // Calling the methods to setup the Score and block array panel.
+    // adds the scorePanel to the frame.
+    // Sets the background colour of the mainPanel and adds it to the frame.
     private void setPanels(){
         setBlockPanel();
         setScorePanel();
@@ -66,7 +74,7 @@ public class GuiGameView extends GuiView {
         mainPanel.setBackground(Color.BLACK);
         mainFrame.add(mainPanel, BorderLayout.CENTER);
     }
-
+    // Method Used by compareArray to set unique colours to tetris pieces
     private void colors(int y, int x){
         String blockType = tetrisController.getBlockType();
         switch(blockType){
@@ -78,6 +86,7 @@ public class GuiGameView extends GuiView {
         }
     }
 
+    // Listener for keypresses, use for movement in left, right and downwards direction, also rotation. updates the GUI at the same time
     @Override
     void listeners() {
         mainFrame.addKeyListener(new KeyListener()
@@ -127,7 +136,8 @@ public class GuiGameView extends GuiView {
             }
         });
     }
-
+    // Sets up the array of JPanels which will correspond with the rows and columns within the TetrisBoard.
+    // Used below to represent the tetris board visually for the user.
     private void setBlockPanel(){
         for(int row = 0; row < blockPanelArray.length; row++){
             for(int column = 0; column < blockPanelArray[row].length; column++){
@@ -140,7 +150,9 @@ public class GuiGameView extends GuiView {
         mainPanel.setFocusable(true);
         mainFrame.setFocusable(true);
     }
-
+    // ---- Visual representation of live board
+    // Mirrors the array of JPanels against the tetris board.
+    // Depending on the content of the tetris board columns, the background of the corresponding JPanel changes colour to represent the content
     private void compareArrays(){
         String tetrisBoard[][] = tetrisController.getCurrentBoard();
         for(int row = 0; row < tetrisBoard.length; row++){

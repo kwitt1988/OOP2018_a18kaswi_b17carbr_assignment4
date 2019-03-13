@@ -3,7 +3,8 @@ package Assignment4.Blocks;
 import Assignment4.TetrisBoard;
 
 import java.util.Arrays;
-
+// The BlockL contains the representation of tetris blocks in form of where each sub piece should be placed in relation to each other.
+// Provides methods on how to rotate each sub piece depending on the set angle
 class BlockL extends BlockModel {
     String blockType = "L";
 
@@ -13,6 +14,9 @@ class BlockL extends BlockModel {
         setBlockPosition();
     }
 
+    // START PIECE FOR L BLOCK
+    // Left represent row
+    // Right represent column
     // UNIQUE FOR BLOCK
     public void setBlockPosition() {
         blockPosition[1][2] = currentPiece1;
@@ -21,6 +25,8 @@ class BlockL extends BlockModel {
         blockPosition[3][3] = currentPiece4;
     }
 
+    // Method for rotation of the row based on the angle
+    // Changes the row position of each sub pieces when called upon
     @SuppressWarnings("Duplicates")
     @Override
     public int rotateRow(int currentRow, String currentPiece) {
@@ -89,6 +95,8 @@ class BlockL extends BlockModel {
         else return 0;
     }
 
+    // Method for rotation of the column based on the angle
+    // Changes the column position of each sub pieces when called upon
     @SuppressWarnings("Duplicates")
     @Override
     public int rotateColumn(int currentColumn, String currentPiece) {

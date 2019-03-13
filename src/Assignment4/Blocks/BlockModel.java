@@ -19,7 +19,7 @@ class BlockModel implements TetrisBlock {
 
     BlockModel(){
     }
-
+    // Return the current blockType String, such as Line, L etc. Used when deciding colour in the visual representation
     public String getBlockType(){
         return blockType;
     }

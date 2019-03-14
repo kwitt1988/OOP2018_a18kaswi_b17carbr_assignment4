@@ -1,15 +1,14 @@
-package Assignment4.Blocks;
+package Assignment4.Model.Blocks;
 
-import Assignment4.TetrisBoard;
+import Assignment4.Model.TetrisBoard;
 
 import java.util.Arrays;
 // The BlockL contains the representation of tetris blocks in form of where each sub piece should be placed in relation to each other.
 // Provides methods on how to rotate each sub piece depending on the set angle
-class BlockL extends BlockModel {
-    String blockType = "L";
+public class BlockInvertedL extends BlockModel {
 
-    protected BlockL(TetrisBoard tetrisBoard) {
-        super.blockType = blockType;
+    public BlockInvertedL(TetrisBoard tetrisBoard) {
+        super.blockType = "InvertedL";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
     }
@@ -18,11 +17,11 @@ class BlockL extends BlockModel {
     // Left represent row
     // Right represent column
     // UNIQUE FOR BLOCK
-    public void setBlockPosition() {
-        blockPosition[1][2] = currentPiece1;
-        blockPosition[2][2] = currentPiece2;
-        blockPosition[3][2] = currentPiece3;
-        blockPosition[3][3] = currentPiece4;
+    private void setBlockPosition() {
+        blockPosition[1][5] = currentPiece1;
+        blockPosition[2][5] = currentPiece2;
+        blockPosition[3][5] = currentPiece3;
+        blockPosition[3][4] = currentPiece4;
     }
 
     // Method for rotation of the row based on the angle
@@ -34,7 +33,21 @@ class BlockL extends BlockModel {
         switch (angle) {
             case 0:
                 if (currentPiece == currentPiece1) {
-                    newRow = currentRow;
+                    newRow = (currentRow + 2);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newRow = (currentRow + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newRow = (currentRow);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newRow = (currentRow - 1);
+                    break;
+                }
+            case 90:
+                if (currentPiece == currentPiece1) {
+                    newRow = (currentRow);
                     break;
                 } else if (currentPiece == currentPiece2) {
                     newRow = (currentRow - 1);
@@ -46,35 +59,7 @@ class BlockL extends BlockModel {
                     newRow = (currentRow - 1);
                     break;
                 }
-            case 90:
-                if (currentPiece == currentPiece1) {
-                    newRow = currentRow + 2;
-                    break;
-                } else if (currentPiece == currentPiece2) {
-                    newRow = currentRow + 1;
-                    break;
-                } else if (currentPiece == currentPiece3) {
-                    newRow = currentRow;
-                    break;
-                } else if (currentPiece == currentPiece4) {
-                    newRow = (currentRow - 1);
-                    break;
-                }
             case 180:
-                if (currentPiece == currentPiece1) {
-                    newRow = currentRow;
-                    break;
-                } else if (currentPiece == currentPiece2) {
-                    newRow = (currentRow + 1);
-                    break;
-                } else if (currentPiece == currentPiece3) {
-                    newRow = (currentRow + 2);
-                    break;
-                } else if (currentPiece == currentPiece4) {
-                    newRow = (currentRow +1);
-                    break;
-                }
-            case 270:
                 if (currentPiece == currentPiece1) {
                     newRow = (currentRow - 2);
                     break;
@@ -83,6 +68,20 @@ class BlockL extends BlockModel {
                     break;
                 } else if (currentPiece == currentPiece3) {
                     newRow = (currentRow);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newRow = (currentRow +1);
+                    break;
+                }
+            case 270:
+                if (currentPiece == currentPiece1) {
+                    newRow = (currentRow);
+                    break;
+                } else if (currentPiece == currentPiece2) {
+                    newRow = (currentRow + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newRow = (currentRow + 2);
                     break;
                 } else if (currentPiece == currentPiece4) {
                     newRow = (currentRow + 1);
@@ -104,13 +103,13 @@ class BlockL extends BlockModel {
         switch (angle) {
             case 0:
                 if (currentPiece == currentPiece1) {
-                    newColumn = (currentColumn + 2);
+                    newColumn = (currentColumn);
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    newColumn = (currentColumn + 1);
+                    newColumn = (currentColumn - 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    newColumn = (currentColumn );
+                    newColumn = (currentColumn - 2);
                     break;
                 } else if (currentPiece == currentPiece4) {
                     newColumn = (currentColumn - 1);
@@ -118,43 +117,43 @@ class BlockL extends BlockModel {
                 }
             case 90:
                 if (currentPiece == currentPiece1) {
-                    newColumn = currentColumn;
+                    newColumn = (currentColumn - 2);
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    newColumn = (currentColumn + 1);
+                    newColumn = (currentColumn - 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    newColumn = (currentColumn + 2);
+                    newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece4) {
-                    newColumn = (currentColumn + 1);
+                    newColumn = (currentColumn);
                     break;
                 }
 
             case 180:
                 if (currentPiece == currentPiece1) {
-                    newColumn = (currentColumn - 2);
-                    break;
-                } else if (currentPiece == currentPiece2) {
-                    newColumn = (currentColumn - 1);
-                    break;
-                } else if (currentPiece == currentPiece3) {
                     newColumn = (currentColumn);
                     break;
-                } else if (currentPiece == currentPiece4) {
+                } else if (currentPiece == currentPiece2) {
                     newColumn = (currentColumn + 1);
+                    break;
+                } else if (currentPiece == currentPiece3) {
+                    newColumn = (currentColumn + 1);
+                    break;
+                } else if (currentPiece == currentPiece4) {
+                    newColumn = (currentColumn + 2);
                     break;
                 }
 
             case 270:
                 if (currentPiece == currentPiece1) {
-                    newColumn = (currentColumn);
+                    newColumn = (currentColumn + 2);
                     break;
                 } else if (currentPiece == currentPiece2) {
-                    newColumn = (currentColumn - 1);
+                    newColumn = (currentColumn + 1);
                     break;
                 } else if (currentPiece == currentPiece3) {
-                    newColumn = (currentColumn - 2);
+                    newColumn = (currentColumn);
                     break;
                 } else if (currentPiece == currentPiece4) {
                     newColumn = (currentColumn - 1);

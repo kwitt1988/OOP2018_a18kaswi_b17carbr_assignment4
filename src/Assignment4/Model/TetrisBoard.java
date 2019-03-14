@@ -1,7 +1,5 @@
-package Assignment4;
+package Assignment4.Model;
 
-
-import Assignment4.Blocks.TetrisBlock;
 
 import java.util.Arrays;
 
@@ -36,11 +34,11 @@ public class TetrisBoard {
         return tetrisBoard;
     }
     // Sets the current board
-    synchronized void setTetrisBoardString(String[][] newBoard){
+    synchronized public void setTetrisBoardString(String[][] newBoard){
         tetrisBoard = Arrays.copyOf(newBoard, newBoard.length);
     }
     // Sets the current board
-    synchronized void setTetrisBoardObject(TetrisBlock block){
+    synchronized public void setTetrisBoardObject(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "currentPiece1"

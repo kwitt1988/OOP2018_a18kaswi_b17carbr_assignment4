@@ -1,4 +1,6 @@
-package Assignment4.Blocks;
+package Assignment4.Model;
+
+// This interface supports the BlockFactorys creation of block-objects.
 
 public interface TetrisBlock {
     void fallDown();
@@ -6,9 +8,7 @@ public interface TetrisBlock {
     void moveRight();
     void moveDropDown();
     void rotateBlock();
-    void setLockBlock(boolean x);
     boolean getLockBlock();
-    void setBlockPosition(String[][] newBlockPosition);
     String[][] getBlockPosition();
     String getBlockType();
 }

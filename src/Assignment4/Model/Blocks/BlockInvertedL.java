@@ -11,6 +11,7 @@ public class BlockInvertedL extends BlockModel {
         super.blockType = "InvertedL";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR L BLOCK

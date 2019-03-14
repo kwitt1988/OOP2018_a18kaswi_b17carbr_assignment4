@@ -5,7 +5,9 @@ package Assignment4.Model.Blocks;
 // different directions, Rotation of blocks in regard to their current
 // angle, getters and setters for blockType, setAngle and so on.
 
+import Assignment4.Controller.TetrisController;
 import Assignment4.Model.TetrisBlock;
+import Assignment4.View.GuiGameView;
 
 public class BlockModel implements TetrisBlock {
     int angle;
@@ -389,5 +391,13 @@ public class BlockModel implements TetrisBlock {
             }
         }
         return validMove;
+    }
+
+    public void checkGameOver(){
+        if(!checkValidMoveDown(blockPosition)){
+            System.out.println("game over");
+            TetrisController.stopGame();
+            GuiGameView.gameOver();
+        }
     }
 }

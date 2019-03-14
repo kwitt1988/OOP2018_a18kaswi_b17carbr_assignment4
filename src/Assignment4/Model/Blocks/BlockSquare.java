@@ -12,6 +12,7 @@ public class BlockSquare extends BlockModel {
         super.blockType = "Square";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR SQUARE BLOCK

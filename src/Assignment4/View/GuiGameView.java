@@ -1,37 +1,66 @@
 package Assignment4.View;
 
 import Assignment4.Controller.TetrisController;
+import Assignment4.Model.TetrisBoard;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 // The GuiGAmeView is responsible for providing a visual representation of the game to the user
 public class GuiGameView extends GuiView {
-    private final JFrame mainFrame = new JFrame();
+    private final static JFrame mainFrame = new JFrame();
     private final JPanel mainPanel = new JPanel();
     private final JPanel scorePanel = new JPanel();
     private final JLabel scoreLabel = new JLabel();
     private final JPanel[][] blockPanelArray = new JPanel[22][12];
-    private final TetrisController tetrisController;
-    private final JButton startButton = new JButton("start");
+    private TetrisController tetrisController;
     private final Timer timer = new Timer(20, new TimerListener());
+    JButton start = new JButton("start");
+    JButton restart = new JButton("restart");
 
     // Calls on a method which starts the gameLoop in the tetrisController
     // Calls on gameScreen which starts the visual representation of the game and starts the timer above
     public GuiGameView(TetrisController gameController){
         tetrisController = gameController;
-        tetrisController.gameLoop();
         gameScreen();
     }
 
     // Sets up and add the panel via GuiView, sets the size of the panel.
     // Calls on the method setPanels which sets up the block array representing the board and the score panel.
     // Starts the time above, which updates the visual representation of the game.
-    private void gameScreen(){
+    public void gameScreen(){
         frameSettings(mainFrame, mainPanel, 400, 800);
         setPanels();
         putBorder();
         timer.start();
+    }
+
+    public void startGame() {
+        keyboardListeners();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                tetrisController.gameLoop();
+            }
+        });
+    }
+
+    // Game-over initialized on the event-dispatcher thread.
+    public static void gameOver() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JOptionPane.showMessageDialog(mainFrame, "Game Over");
+            }
+        });
+    }
+
+    public void restartGame(){
+        keyboardListeners();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                tetrisController = new TetrisController();
+                tetrisController.gameLoop();
+            }
+        });
     }
 
     // Calling the methods to setup the Score and block array panel.
@@ -63,9 +92,13 @@ public class GuiGameView extends GuiView {
     // setting size, layout of the scorePanel, adding the scoreLabel such to it.
     private void setScorePanel(){
         scorePanel.setSize(800, 50);
-        scorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        scorePanel.add(startButton);
+        scorePanel.setLayout(new GridBagLayout());
         scorePanel.add(scoreLabel);
+        start.setFocusable(false);
+        scorePanel.add(start);
+        restart.setFocusable(false);
+        scorePanel.add(restart);
+        scoreLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         scorePanel.setBackground(Color.RED);
         scorePanel.setOpaque(true);
     }
@@ -142,6 +175,26 @@ public class GuiGameView extends GuiView {
     // Listener for keypresses, use for movement in left, right and downwards direction, also rotation. updates the GUI at the same time
     @Override
     void listeners() {
+
+
+        restart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                restartGame();
+            }
+        });
+
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startGame();
+
+            }
+        });
+    }
+
+    // Listeners for keyboard-events, starts when start-game is clicked.
+    private void keyboardListeners(){
         mainFrame.addKeyListener(new KeyListener()
         {
             @Override
@@ -154,7 +207,6 @@ public class GuiGameView extends GuiView {
                 if(KeyCode == KeyEvent.VK_LEFT){
                     tetrisController.moveLeft();
                     updateGUI();
-
                 }
                 if(KeyCode == KeyEvent.VK_RIGHT){
                     tetrisController.moveRight();

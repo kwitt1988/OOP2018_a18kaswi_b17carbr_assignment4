@@ -11,13 +11,16 @@ import java.util.TimerTask;
 // Contain the gameLoop by which retrieves a block-object which it then plays out that objects life-cycle by using a timer.
 // Handles the monitoring and execution of row clearing and all the  other procedures involving it, such as score evaluation.
 // Provide the connect to different parts of the program, for example getters for getScore, getBlockType, getCurrentBoard and such alike.
-public class TetrisController {
+public class TetrisController{
     private final TetrisBoard tetrisBoard = new TetrisBoard();
     private final BlockFactory blockFactory = new BlockFactory();
     private TetrisBlock newBlock;
+    private static TimerTask timer;
     private int numClears;
     private long score;
     private int lvl = 1;
+    private Runnable task;
+    private TimerTask timerTask;
 
     public TetrisController(){
     }
@@ -31,7 +34,7 @@ public class TetrisController {
     // Ending with a call one a new piece to be created
     public void gameLoop(){
         newBlock = blockFactory.getBlock(tetrisBoard);
-        new java.util.Timer().schedule(new TimerTask(){
+        new java.util.Timer().schedule(timer = new TimerTask(){
             @Override
             public void run() {
                 newBlock.fallDown();
@@ -42,7 +45,11 @@ public class TetrisController {
                 }
             }
 
-        }, 1000,1000);
+        }, 500,500);
+    }
+
+    public static void stopGame(){
+        timer.cancel();
     }
 
     ////////////////////////
@@ -92,7 +99,6 @@ public class TetrisController {
         }
         return newBoard;
     }
-
 
     /////////////////////////////
     // LOGIC FOR HANDLING ROWS //
@@ -148,7 +154,7 @@ public class TetrisController {
 
         }
         lvl += 1;
-        numClears  = 0;
+        numClears = 0;
         return Board;
     }
 

@@ -9,9 +9,9 @@ public class BlockS extends BlockModel {
 
     public BlockS(TetrisBoard tetrisBoard) {
         super.blockType = "S";
-
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR L BLOCK

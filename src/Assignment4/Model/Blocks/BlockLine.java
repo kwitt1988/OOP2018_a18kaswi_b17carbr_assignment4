@@ -11,6 +11,7 @@ public class BlockLine extends BlockModel {
         super.blockType = "Line";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR Line BLOCK

@@ -11,6 +11,7 @@ public class BlockZ extends BlockModel {
         super.blockType = "Z";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR S BLOCK

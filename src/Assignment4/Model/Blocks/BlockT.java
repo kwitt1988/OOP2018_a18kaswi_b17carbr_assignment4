@@ -11,6 +11,7 @@ public class BlockT extends BlockModel {
         super.blockType = "T";
         blockPosition = Arrays.copyOf(tetrisBoard.getTetrisBoard(), tetrisBoard.getTetrisBoard().length);
         setBlockPosition();
+        checkGameOver();
     }
 
     // START PIECE FOR L BLOCK

@@ -1,7 +1,6 @@
 package Assignment4.View;
 
 import Assignment4.Controller.TetrisController;
-import Assignment4.Model.TetrisBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +12,10 @@ public class GuiGameView extends GuiView {
     private final JPanel scorePanel = new JPanel();
     private final JLabel scoreLabel = new JLabel();
     private final JPanel[][] blockPanelArray = new JPanel[22][12];
-    private TetrisController tetrisController;
     private final Timer timer = new Timer(20, new TimerListener());
-    JButton start = new JButton("start");
-    JButton restart = new JButton("restart");
+    private final JButton start = new JButton("start");
+    private final JButton restart = new JButton("restart");
+    private TetrisController tetrisController;
 
     // Calls on a method which starts the gameLoop in the tetrisController
     // Calls on gameScreen which starts the visual representation of the game and starts the timer above
@@ -28,14 +27,14 @@ public class GuiGameView extends GuiView {
     // Sets up and add the panel via GuiView, sets the size of the panel.
     // Calls on the method setPanels which sets up the block array representing the board and the score panel.
     // Starts the time above, which updates the visual representation of the game.
-    public void gameScreen(){
+    private void gameScreen(){
         frameSettings(mainFrame, mainPanel, 400, 800);
         setPanels();
         putBorder();
         timer.start();
     }
 
-    public void startGame() {
+    private void startGame() {
         keyboardListeners();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -53,7 +52,7 @@ public class GuiGameView extends GuiView {
         });
     }
 
-    public void restartGame(){
+    private void restartGame(){
         keyboardListeners();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -118,17 +117,17 @@ public class GuiGameView extends GuiView {
         switch(blockType){
             case "Line": blockPanelArray[y][x].setBackground(Color.orange);
                 break;
-            case "L": blockPanelArray[y][x].setBackground(Color.CYAN);
+            case "L": blockPanelArray[y][x].setBackground(Color.YELLOW);
                 break;
-            case "Z": blockPanelArray[y][x].setBackground(Color.orange);
+            case "Z": blockPanelArray[y][x].setBackground(Color.white);
                 break;
-            case "Square": blockPanelArray[y][x].setBackground(Color.orange);
+            case "Square": blockPanelArray[y][x].setBackground(Color.PINK);
                 break;
-            case "InvertedL": blockPanelArray[y][x].setBackground(Color.orange);
+            case "InvertedL": blockPanelArray[y][x].setBackground(Color.GRAY);
                 break;
-            case "S": blockPanelArray[y][x].setBackground(Color.orange);
+            case "S": blockPanelArray[y][x].setBackground(Color.BLUE);
                 break;
-            case "T": blockPanelArray[y][x].setBackground(Color.orange);
+            case "T": blockPanelArray[y][x].setBackground(Color.MAGENTA);
                 break;
         }
     }

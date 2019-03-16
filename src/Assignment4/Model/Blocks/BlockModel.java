@@ -21,9 +21,6 @@ public class BlockModel implements TetrisBlock {
     private boolean lockBlock = false;
     private boolean validMove = true;
 
-
-    public BlockModel(){
-    }
     // Return the current blockType String, such as Line, L etc. Used when deciding colour in the visual representation
     public String getBlockType(){
         return blockType;
@@ -149,17 +146,17 @@ public class BlockModel implements TetrisBlock {
     // Calls methods that rotates each sub piece and passes in as argument a copy of the board
     // Completed piece rotation get validated and then set in action on the live board, and finally followed by shifting the angle one step ahead.
     public void rotateBlock(){
-        String[][] newBlockPosition = copyOfOldBoard(blockPosition);
-        finalPosition = copyOfOldBoard(blockPosition);
-        rotateBlock1(newBlockPosition);
-        rotateBlock2(newBlockPosition);
-        rotateBlock3(newBlockPosition);
-        rotateBlock4(newBlockPosition);
-        if(validMove){
-            blockPosition = finalPosition;
-            setAngle(angle);
-        }
-        validMove = true;
+            String[][] newBlockPosition = copyOfOldBoard(blockPosition);
+            finalPosition = copyOfOldBoard(blockPosition);
+            rotateBlock1(newBlockPosition);
+            rotateBlock2(newBlockPosition);
+            rotateBlock3(newBlockPosition);
+            rotateBlock4(newBlockPosition);
+            if(validMove){
+                blockPosition = finalPosition;
+                setAngle(angle);
+            }
+            validMove = true;
     }
 
     // Creates a copy of the live board
@@ -177,7 +174,6 @@ public class BlockModel implements TetrisBlock {
     // Looping through the array by each row and each corresponding column within that row until currentPiece1 is found
     // The row and corresponding column then gets individually rotated at then set within finalPosition array
     // Lastly the previous currentPiece1 entry get removed
-    @SuppressWarnings("Duplicates")
     private void rotateBlock1(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
@@ -198,7 +194,6 @@ public class BlockModel implements TetrisBlock {
     // Looping through the array by each row and each corresponding column within that row until currentPiece2 is found
     // The row and corresponding column then gets individually rotated at then set within finalPosition array
     // Lastly the previous currentPiece2 entry get removed
-    @SuppressWarnings("Duplicates")
     private void rotateBlock2(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
@@ -219,7 +214,6 @@ public class BlockModel implements TetrisBlock {
     // Looping through the array by each row and each corresponding column within that row until currentPiece3 is found
     // The row and corresponding column then gets individually rotated at then set within finalPosition array
     // Lastly the previous currentPiece3 entry get removed
-    @SuppressWarnings("Duplicates")
     private void rotateBlock3(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
@@ -240,7 +234,6 @@ public class BlockModel implements TetrisBlock {
     // Looping through the array by each row and each corresponding column within that row until currentPiece4 is found
     // The row and corresponding column then gets individually rotated at then set within finalPosition array
     // Lastly the previous currentPiece4 entry get removed
-    @SuppressWarnings("Duplicates")
     private void rotateBlock4(String[][] copy) {
         outer: for (int row = 0; row < copy.length - 1; row++) {
             for (int column = 0; column < copy[row].length; column++) {
@@ -393,7 +386,7 @@ public class BlockModel implements TetrisBlock {
         return validMove;
     }
 
-    public void checkGameOver(){
+    void checkGameOver(){
         if(!checkValidMoveDown(blockPosition)){
             System.out.println("game over");
             TetrisController.stopGame();

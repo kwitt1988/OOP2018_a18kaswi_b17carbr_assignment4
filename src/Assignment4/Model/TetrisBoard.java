@@ -30,15 +30,15 @@ public class TetrisBoard {
             /* 21 */  {"-","-","-","-","-","-","-","-","-","-","-","-"}};
 
     // Return the current board
-    public String[][] getTetrisBoard(){
+    public  String[][] getTetrisBoard(){
         return tetrisBoard;
     }
     // Sets the current board
-    synchronized public void setTetrisBoardString(String[][] newBoard){
+    public void setTetrisBoardString(String[][] newBoard){
         tetrisBoard = Arrays.copyOf(newBoard, newBoard.length);
     }
     // Sets the current board
-    synchronized public void setTetrisBoardObject(TetrisBlock block){
+    public void setTetrisBoardObject(TetrisBlock block){
         for (int row = 0; row < block.getBlockPosition().length; row++){
             for (int column = 0; column < block.getBlockPosition()[row].length; column++){
                 if(block.getBlockPosition()[row][column] == "currentPiece1"

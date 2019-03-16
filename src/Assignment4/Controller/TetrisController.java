@@ -18,12 +18,6 @@ public class TetrisController{
     private static TimerTask timer;
     private int numClears;
     private long score;
-    private int lvl = 1;
-    private Runnable task;
-    private TimerTask timerTask;
-
-    public TetrisController(){
-    }
 
     // ---- THE GameLoop
     // Loops the game with one one second intervals.
@@ -86,7 +80,7 @@ public class TetrisController{
         tetrisBoard.setTetrisBoardObject(newBlock);
     }
 
-    // Changes sub pieces tags onces they reached the end of their active cycle, i.e. they have been locked in place
+    // Changes sub pieces tags once they reached the end of their active cycle, i.e. they have been locked in place
     private String[][] lockBlock(){
         String[][] newBoard = new String[22][12];
         for(int row = 0; row < tetrisBoard.getTetrisBoard().length; row++){
@@ -153,7 +147,6 @@ public class TetrisController{
                 break;
 
         }
-        lvl += 1;
         numClears = 0;
         return Board;
     }
@@ -165,11 +158,6 @@ public class TetrisController{
     // return the current score
     public long getScore(){
         return score;
-    }
-
-    // returns the current lvl
-    public int getLvl(){
-        return lvl;
     }
 
     // returns the current active board from the TetrisBoard class
